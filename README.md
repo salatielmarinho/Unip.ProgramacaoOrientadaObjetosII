@@ -126,10 +126,10 @@ git clone https://github.com/salatielmarinho/Unip.ProgramacaoOrientadaObjetosII.
 
 Liste o time responsável pelo desenvolvimento do projeto
 
-<img src="./assets/salatiel_formatura.jpeg" width=115><br><sub>[Prof. Salatiel Luz Marinho</sub>](https://github.com/Diana-ops)  
+<img src="./assets/salatiel_formatura.jpeg" width=115><br><sub>[Prof. Salatiel Luz Marinho</sub>](https://github.com/salatielmarinho/programacao_orientada_objetos)  
 
 ## Licença 
 
-The [MIT License]() (MIT)
+[Universidade Paulista - UNIP](http://www.unip.br)
 
 Copyright :copyright: 2024 - Programação Orientada à Objetos II
