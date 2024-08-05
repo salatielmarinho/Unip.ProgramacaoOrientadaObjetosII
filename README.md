@@ -50,6 +50,7 @@ Desenvolver programas de computador aplicados a ambientes práticos e interagir c
 
 ## Conteúdo Programático
 
+<p align="justify">
 :small_blue_diamond: Revisando conceitos de POOI: exercícios práticos (Console);<br>
 :small_blue_diamond: Apresentação geral dos recursos e elementos de interface no ambiente de programação C#;<br>
 :small_blue_diamond: Desenvolvendo a primeira interface gráfica: Windows Forms;<br>
@@ -72,6 +73,7 @@ Desenvolver programas de computador aplicados a ambientes práticos e interagir c
 :small_blue_diamond: Princípios e práticas de DDD (Domain-Driven Design);<br>
 :small_blue_diamond: Desenvolvimento cross-platform com Xamarin ou MAUI;<br>
 :small_blue_diamond: Desenvolvimento de aplicativos móveis;<br>
+</p>
 
 ## Estratégia de Trabalho
 
