@@ -50,28 +50,28 @@ Desenvolver programas de computador aplicados a ambientes práticos e interagir c
 
 ## Conteúdo Programático
 
-?	Revisando conceitos de POOI: exercícios práticos (Console);
-?	Apresentação geral dos recursos e elementos de interface no ambiente de programação C#;
-?	Desenvolvendo a primeira interface gráfica: Windows Forms;
-?	Utilização de formulários e caixas de mensagem;
-?	Elementos gráficos básicos: rótulos, caixas de texto e botões;
-?	Elementos gráficos de apoio: painéis, grupos, rótulos com vinculo e dicas de ferramentas;
-?	Elementos gráficos de escolha: caixas de opção, caixas de seleção, caixas de combinação, calendário mensal e seletor de data;
-?	Elementos gráficos de organização: menus, caixa de listagens, controle de abas, visualização em árvore e em lista;
-?	Manipulação dos eventos de mouse e teclado;
-?	Multiple Document Interface (MDI);
-?	Projeto básico: juntando todas as partes com IHC e UX;
-?	Desenvolvimento em camadas e MVC;
-?	String de conexão: utilização do SQLClient e comentários sobre outros provedores de dados do .NET Framework (OLE DB e OBDC);
-?	Conexões locais e servidores remotos no contexto da computação em nuvem;
-?	Arquitetura  do ADO.NET : DataSet, DataTable, DataView, DataRow e DataColumn
-?	LINQ e ADO.NET;
-?	Projeto intermediário: interface desktop com acesso aos dados do banco;
-?	Entendo os componentes do Windows Presentation Foundation;
-?	Técnicas avançadas e práticas Seguras em C#;
-?	Princípios e práticas de DDD (Domain-Driven Design);
-?	Desenvolvimento cross-platform com Xamarin ou MAUI;
-?	Desenvolvimento de aplicativos móveis;
+:small_blue_diamond: Revisando conceitos de POOI: exercícios práticos (Console);
+:small_blue_diamond: Apresentação geral dos recursos e elementos de interface no ambiente de programação C#;
+:small_blue_diamond: Desenvolvendo a primeira interface gráfica: Windows Forms;
+:small_blue_diamond: Utilização de formulários e caixas de mensagem;
+:small_blue_diamond: Elementos gráficos básicos: rótulos, caixas de texto e botões;
+:small_blue_diamond: Elementos gráficos de apoio: painéis, grupos, rótulos com vinculo e dicas de ferramentas;
+:small_blue_diamond: Elementos gráficos de escolha: caixas de opção, caixas de seleção, caixas de combinação, calendário mensal e seletor de data;
+:small_blue_diamond: Elementos gráficos de organização: menus, caixa de listagens, controle de abas, visualização em árvore e em lista;
+:small_blue_diamond: Manipulação dos eventos de mouse e teclado;
+:small_blue_diamond: Multiple Document Interface (MDI);
+:small_blue_diamond: Projeto básico: juntando todas as partes com IHC e UX;
+:small_blue_diamond: Desenvolvimento em camadas e MVC;
+:small_blue_diamond: String de conexão: utilização do SQLClient e comentários sobre outros provedores de dados do .NET Framework (OLE DB e OBDC);
+:small_blue_diamond: Conexões locais e servidores remotos no contexto da computação em nuvem;
+:small_blue_diamond: Arquitetura  do ADO.NET : DataSet, DataTable, DataView, DataRow e DataColumn
+:small_blue_diamond: LINQ e ADO.NET;
+:small_blue_diamond: Projeto intermediário: interface desktop com acesso aos dados do banco;
+:small_blue_diamond: Entendo os componentes do Windows Presentation Foundation;
+:small_blue_diamond: Técnicas avançadas e práticas Seguras em C#;
+:small_blue_diamond: Princípios e práticas de DDD (Domain-Driven Design);
+:small_blue_diamond: Desenvolvimento cross-platform com Xamarin ou MAUI;
+:small_blue_diamond: Desenvolvimento de aplicativos móveis;
 
 ## Estratégia de Trabalho
 
@@ -81,9 +81,9 @@ As aulas são predominantemente em metodologia ativa de ensino, apoiadas nas dire
 
 ## Avaliação
 
-?	Provas bimestrais sobre o conteúdo exposto.
-?	A média do semestre será calculada de acordo com o Regimento da IES.
-?	As provas serão presenciais seguindo local e calendário divulgado pela instituição.
+:small_blue_diamond: Provas bimestrais sobre o conteúdo exposto.
+:small_blue_diamond: A média do semestre será calculada de acordo com o Regimento da IES.
+:small_blue_diamond: As provas serão presenciais seguindo local e calendário divulgado pela instituição.
 
 ## Bibliografia
 
