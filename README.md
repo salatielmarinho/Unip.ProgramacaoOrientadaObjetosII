@@ -83,9 +83,11 @@ As aulas são predominantemente em metodologia ativa de ensino, apoiadas nas dire
 
 ## Avaliação
 
+<p align="justify">
 :small_blue_diamond: Provas bimestrais sobre o conteúdo exposto.<br>
 :small_blue_diamond: A média do semestre será calculada de acordo com o Regimento da IES.<br>
 :small_blue_diamond: As provas serão presenciais seguindo local e calendário divulgado pela instituição.<br>
+</p>
 
 ## Bibliografia
 
