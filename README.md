@@ -126,7 +126,7 @@ git clone https://github.com/salatielmarinho/Unip.ProgramacaoOrientadaObjetosII.
 
 Liste o time responsável pelo desenvolvimento do projeto
 
-<img src="./assets/salatiel_formatura.jpeg" width=115><br><sub>[Prof. Salatiel Luz Marinho</sub>](https://github.com/salatielmarinho/programacao_orientada_objetos)  
+<img src="./assets/salatiel_formatura.jpeg" width=115><br><sub>[Prof. Salatiel Luz Marinho</sub>](linkedin.com/in/salatielmarinho)  
 
 ## Licença 
 
