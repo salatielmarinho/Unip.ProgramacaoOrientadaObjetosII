@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
@@ -8,12 +9,23 @@ namespace ModuloAluno
 {
     public partial class frmIncluirAluno : Form
     {
-        public frmIncluirAluno()
-        {
-            InitializeComponent();
-        }
+        #region Propriedades
+        private string connectionStrings { get; set; }
+        #endregion
 
         #region Eventos
+        public frmIncluirAluno()
+        {
+            try
+            {
+                connectionStrings = ConfigurationManager.ConnectionStrings["UNIP_Desenvolvimento"].ConnectionString;
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao inicializar form - frmIncluirAluno: " + ex.Message);
+            }
+        }
         private void txtEmail_Leave(object sender, EventArgs e)
         {
             try
@@ -31,11 +43,39 @@ namespace ModuloAluno
                 throw;
             }
         }
+        private void mskTelefone_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                MaskedTextBox mskTelefone = sender as MaskedTextBox;
+                var validacaoTelefone = ValidarTelefone(mskTelefone.Text);
+                if (!validacaoTelefone)
+                {
+                    MessageBox.Show("Telefone inválido");
+                    mskTelefone.Focus();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ImpedirDigitacaoNumero(e);
+        }
+        private void txtIdade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ImpedirLetrasCaracteresEspeciais(e);
+        }
+        private void frmIncluirAluno_Load(object sender, EventArgs e)
+        {
+            cbxCurso.SelectedIndex = 0;
+        }
         private void btnIncluirAluno_Click(object sender, EventArgs e)
         {
             try
             {
-                string connectionStrings = "sua_string_de_conexao";
                 using (SqlConnection connection = new SqlConnection(connectionStrings))
                 {
                     connection.Open();
@@ -56,6 +96,7 @@ namespace ModuloAluno
                         if (command.ExecuteNonQuery() > 0)
                         {
                             MessageBox.Show("Aluno(a) Cadastrado(a) com Sucesso");
+                            LimparCampos();
                         }
                         else
                         {
@@ -72,6 +113,17 @@ namespace ModuloAluno
         #endregion
 
         #region Métodos
+        private void LimparCampos()
+        {
+            txtNome.Clear();
+            txtIdade.Clear();
+            cbxCurso.SelectedIndex = 0;
+            txtEmail.Clear();
+            mskDataDeMatricula.Clear();
+            txtEndereco.Clear();
+            mskTelefone.Clear();
+            txtNome.Focus();
+        }
         private bool ValidarEmail(string email)
         {
             try
@@ -130,7 +182,6 @@ namespace ModuloAluno
                 e.Handled = true;
             }
         }
-
         private string ValidarCampoObrigatorio(string texto)
         {
             try
@@ -146,18 +197,6 @@ namespace ModuloAluno
             }
             return texto;
         }
-
-
-        #endregion
-
-        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ImpedirDigitacaoNumero(e);
-        }
-
-        private void txtIdade_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ImpedirLetrasCaracteresEspeciais(e);
-        }
+        #endregion        
     }
 }

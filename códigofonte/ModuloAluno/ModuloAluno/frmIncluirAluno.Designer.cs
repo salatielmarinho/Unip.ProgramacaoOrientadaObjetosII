@@ -43,6 +43,7 @@
             this.mskDataDeMatricula = new System.Windows.Forms.MaskedTextBox();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.cbxCurso = new System.Windows.Forms.ComboBox();
+            this.btnSair = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNome
@@ -113,7 +114,7 @@
             this.txtNome.Location = new System.Drawing.Point(129, 22);
             this.txtNome.MaxLength = 50;
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(290, 20);
+            this.txtNome.Size = new System.Drawing.Size(424, 20);
             this.txtNome.TabIndex = 1;
             this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
@@ -131,7 +132,7 @@
             this.txtEmail.Location = new System.Drawing.Point(129, 101);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(290, 20);
+            this.txtEmail.Size = new System.Drawing.Size(424, 20);
             this.txtEmail.TabIndex = 4;
             this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
@@ -140,7 +141,7 @@
             this.txtEndereco.Location = new System.Drawing.Point(129, 153);
             this.txtEndereco.MaxLength = 50;
             this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(290, 20);
+            this.txtEndereco.Size = new System.Drawing.Size(424, 20);
             this.txtEndereco.TabIndex = 6;
             // 
             // btnIncluirAluno
@@ -169,25 +170,38 @@
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(75, 20);
             this.mskTelefone.TabIndex = 7;
+            this.mskTelefone.Leave += new System.EventHandler(this.mskTelefone_Leave);
             // 
             // cbxCurso
             // 
+            this.cbxCurso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCurso.FormattingEnabled = true;
             this.cbxCurso.Items.AddRange(new object[] {
-            "SELECIONE",
+            "--SELECIONE--",
             "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS",
             "GESTÃO DE TI",
             "REDES"});
             this.cbxCurso.Location = new System.Drawing.Point(129, 76);
             this.cbxCurso.Name = "cbxCurso";
-            this.cbxCurso.Size = new System.Drawing.Size(290, 21);
+            this.cbxCurso.Size = new System.Drawing.Size(424, 21);
             this.cbxCurso.TabIndex = 3;
+            // 
+            // btnSair
+            // 
+            this.btnSair.Location = new System.Drawing.Point(447, 265);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(106, 23);
+            this.btnSair.TabIndex = 9;
+            this.btnSair.Text = "Sair";
+            this.btnSair.UseVisualStyleBackColor = true;
             // 
             // frmIncluirAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 300);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(565, 300);
+            this.Controls.Add(this.btnSair);
             this.Controls.Add(this.cbxCurso);
             this.Controls.Add(this.mskTelefone);
             this.Controls.Add(this.mskDataDeMatricula);
@@ -203,8 +217,12 @@
             this.Controls.Add(this.lblCurso);
             this.Controls.Add(this.lblIdade);
             this.Controls.Add(this.lblNome);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmIncluirAluno";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmIncluirAluno";
+            this.Load += new System.EventHandler(this.frmIncluirAluno_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,6 +245,7 @@
         private System.Windows.Forms.MaskedTextBox mskDataDeMatricula;
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.ComboBox cbxCurso;
+        private System.Windows.Forms.Button btnSair;
     }
 }
 
