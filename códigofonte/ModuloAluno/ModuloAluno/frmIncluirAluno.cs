@@ -88,8 +88,6 @@ namespace ModuloAluno
                             !String.IsNullOrEmpty(txtIdade.Text) ? Convert.ToInt16(txtIdade.Text) : 0);
                         command.Parameters.AddWithValue("@Curso", ValidarCampoObrigatorio(cbxCurso.Text));
                         command.Parameters.AddWithValue("@Email", ValidarCampoObrigatorio(txtEmail.Text));
-                        command.Parameters.AddWithValue("@DataDeMatricula",
-                            !String.IsNullOrEmpty(mskDataDeMatricula.Text) ? Convert.ToDateTime(mskDataDeMatricula.Text).Date : DateTime.Now.Date);
                         command.Parameters.AddWithValue("@Endereco", ValidarCampoObrigatorio(txtEndereco.Text));
                         command.Parameters.AddWithValue("@Telefone", ValidarCampoObrigatorio(mskTelefone.Text));
 
@@ -110,6 +108,34 @@ namespace ModuloAluno
                 MessageBox.Show("Erro ao cadastrar o aluno: " + ex.Message);
             }
         }
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            // Configura a mensagem, título e botões do MessageBox
+            string message = "Deseja realmente sair da aplicação?";
+            string caption = "Sair";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
+            DialogResult result;
+
+            // Exibe o MessageBox e captura o resultado
+            result = MessageBox.Show(message, caption, buttons);
+
+            // Verifica qual botão foi clicado
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    // Código para salvar as alterações
+                    Close();
+                    break;
+                case DialogResult.No:
+                    // Código para descartar as alterações
+                    MessageBox.Show("Teste 1");
+                    break;
+                case DialogResult.Cancel:
+                    // Código para cancelar a operação
+                    MessageBox.Show("Teste 2.");
+                    break;
+            }
+        }
         #endregion
 
         #region Métodos
@@ -119,7 +145,6 @@ namespace ModuloAluno
             txtIdade.Clear();
             cbxCurso.SelectedIndex = 0;
             txtEmail.Clear();
-            mskDataDeMatricula.Clear();
             txtEndereco.Clear();
             mskTelefone.Clear();
             txtNome.Focus();
@@ -148,7 +173,7 @@ namespace ModuloAluno
             bool validacaoTelefone = false;
             try
             {
-                string padraoTelefone = @"^(\([0-9]{2}\))? [0-9]{4,5}-?[0-9]{4}$";
+                string padraoTelefone = @"(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})";
 
                 if (string.IsNullOrEmpty(telefone))
                 {

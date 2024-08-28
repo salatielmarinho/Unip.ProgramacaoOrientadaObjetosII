@@ -32,7 +32,6 @@
             this.lblIdade = new System.Windows.Forms.Label();
             this.lblCurso = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.lblDataDeMatricula = new System.Windows.Forms.Label();
             this.lblEndereco = new System.Windows.Forms.Label();
             this.lblTelefone = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
@@ -40,7 +39,6 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.btnIncluirAluno = new System.Windows.Forms.Button();
-            this.mskDataDeMatricula = new System.Windows.Forms.MaskedTextBox();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.cbxCurso = new System.Windows.Forms.ComboBox();
             this.btnSair = new System.Windows.Forms.Button();
@@ -82,19 +80,10 @@
             this.lblEmail.TabIndex = 3;
             this.lblEmail.Text = "Email:";
             // 
-            // lblDataDeMatricula
-            // 
-            this.lblDataDeMatricula.AutoSize = true;
-            this.lblDataDeMatricula.Location = new System.Drawing.Point(26, 134);
-            this.lblDataDeMatricula.Name = "lblDataDeMatricula";
-            this.lblDataDeMatricula.Size = new System.Drawing.Size(96, 13);
-            this.lblDataDeMatricula.TabIndex = 4;
-            this.lblDataDeMatricula.Text = "Data de Matrícula:";
-            // 
             // lblEndereco
             // 
             this.lblEndereco.AutoSize = true;
-            this.lblEndereco.Location = new System.Drawing.Point(26, 160);
+            this.lblEndereco.Location = new System.Drawing.Point(26, 144);
             this.lblEndereco.Name = "lblEndereco";
             this.lblEndereco.Size = new System.Drawing.Size(56, 13);
             this.lblEndereco.TabIndex = 5;
@@ -103,7 +92,7 @@
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(26, 186);
+            this.lblTelefone.Location = new System.Drawing.Point(26, 170);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(52, 13);
             this.lblTelefone.TabIndex = 6;
@@ -138,7 +127,7 @@
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(129, 153);
+            this.txtEndereco.Location = new System.Drawing.Point(129, 137);
             this.txtEndereco.MaxLength = 50;
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(424, 20);
@@ -146,7 +135,7 @@
             // 
             // btnIncluirAluno
             // 
-            this.btnIncluirAluno.Location = new System.Drawing.Point(29, 232);
+            this.btnIncluirAluno.Location = new System.Drawing.Point(29, 205);
             this.btnIncluirAluno.Name = "btnIncluirAluno";
             this.btnIncluirAluno.Size = new System.Drawing.Size(106, 23);
             this.btnIncluirAluno.TabIndex = 8;
@@ -154,19 +143,10 @@
             this.btnIncluirAluno.UseVisualStyleBackColor = true;
             this.btnIncluirAluno.Click += new System.EventHandler(this.btnIncluirAluno_Click);
             // 
-            // mskDataDeMatricula
-            // 
-            this.mskDataDeMatricula.Location = new System.Drawing.Point(129, 128);
-            this.mskDataDeMatricula.Mask = "00/00/0000";
-            this.mskDataDeMatricula.Name = "mskDataDeMatricula";
-            this.mskDataDeMatricula.Size = new System.Drawing.Size(65, 20);
-            this.mskDataDeMatricula.TabIndex = 5;
-            this.mskDataDeMatricula.ValidatingType = typeof(System.DateTime);
-            // 
             // mskTelefone
             // 
-            this.mskTelefone.Location = new System.Drawing.Point(129, 186);
-            this.mskTelefone.Mask = "(99)9999-9999";
+            this.mskTelefone.Location = new System.Drawing.Point(129, 170);
+            this.mskTelefone.Mask = "(00)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(75, 20);
             this.mskTelefone.TabIndex = 7;
@@ -194,6 +174,7 @@
             this.btnSair.TabIndex = 9;
             this.btnSair.Text = "Sair";
             this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // frmIncluirAluno
             // 
@@ -204,7 +185,6 @@
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.cbxCurso);
             this.Controls.Add(this.mskTelefone);
-            this.Controls.Add(this.mskDataDeMatricula);
             this.Controls.Add(this.btnIncluirAluno);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.txtEmail);
@@ -212,7 +192,6 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblTelefone);
             this.Controls.Add(this.lblEndereco);
-            this.Controls.Add(this.lblDataDeMatricula);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblCurso);
             this.Controls.Add(this.lblIdade);
@@ -234,7 +213,6 @@
         private System.Windows.Forms.Label lblIdade;
         private System.Windows.Forms.Label lblCurso;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblDataDeMatricula;
         private System.Windows.Forms.Label lblEndereco;
         private System.Windows.Forms.Label lblTelefone;
         private System.Windows.Forms.TextBox txtNome;
@@ -242,7 +220,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Button btnIncluirAluno;
-        private System.Windows.Forms.MaskedTextBox mskDataDeMatricula;
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.ComboBox cbxCurso;
         private System.Windows.Forms.Button btnSair;
