@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace ModuloAluno
+namespace Desktop
 {
     public partial class frmIncluirAluno : Form
     {

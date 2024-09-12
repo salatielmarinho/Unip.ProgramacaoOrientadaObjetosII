@@ -1,4 +1,4 @@
-﻿namespace ModuloAluno
+﻿namespace Desktop
 {
     partial class frmIncluirAluno
     {
@@ -42,6 +42,7 @@
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.cbxCurso = new System.Windows.Forms.ComboBox();
             this.btnSair = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNome
@@ -176,12 +177,22 @@
             this.btnSair.UseVisualStyleBackColor = true;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(392, 205);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Consultar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmIncluirAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(565, 300);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.cbxCurso);
             this.Controls.Add(this.mskTelefone);
@@ -223,6 +234,7 @@
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.ComboBox cbxCurso;
         private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Button button1;
     }
 }
 

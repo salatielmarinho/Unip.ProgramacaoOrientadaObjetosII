@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ModuloAluno
+namespace Desktop
 {
     internal static class Program
     {
