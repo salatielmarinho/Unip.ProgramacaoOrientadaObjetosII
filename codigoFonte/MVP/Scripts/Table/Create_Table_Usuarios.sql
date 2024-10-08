@@ -1,0 +1,10 @@
+USE PIM;
+
+-- Criação da tabela Usuarios
+CREATE TABLE Usuarios (
+    UsuarioID INT PRIMARY KEY IDENTITY(1,1),
+    Nome NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE,
+    Senha NVARCHAR(100) NOT NULL,
+    DataCriacao DATETIME DEFAULT GETDATE()
+);
