@@ -1,0 +1,17 @@
+USE BD_FAZENDA;
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Produtos')
+BEGIN
+    PRINT 'A tabela já existe.'
+END
+ELSE
+BEGIN
+	CREATE TABLE Produtos 
+	(
+		  Id INT NOT NULL PRIMARY KEY IDENTITY,
+		  Produto VARCHAR(50) NOT NULL,
+		  Quantidade INT NOT NULL,
+		  Preco DECIMAL(10, 2) NOT NULL
+	);
+	PRINT 'Tabela criada com sucesso.'
+END

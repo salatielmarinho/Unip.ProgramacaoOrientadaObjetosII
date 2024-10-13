@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Desktop.Model
+namespace Model
 {
     public class Endereco
     {
