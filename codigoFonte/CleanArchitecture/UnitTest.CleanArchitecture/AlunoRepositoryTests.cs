@@ -1,22 +1,23 @@
+using Bogus;
 using Domain.Entities;
-using Infrastructure.Data;
+using Infrastructure.Data.Factory;
 using Infrastructure.Repositories;
 using Moq;
 using System.Data;
-using Xunit;
 
 namespace UnitTest.CleanArchitecture
 {
     public class AlunoRepositoryTests
     {
+        private readonly Faker _faker = new Faker("pt_BR");
         [Fact]
         public void InserirAluno_ValidAluno_ReturnsTrue()
         {
             // Arrange
             var aluno = new Aluno
             {
-                Nome = "João Marinho",
-                DataNascimento = new DateOnly(2000, 1, 1),
+                Nome = _faker.Name.FirstName(),
+                DataNascimento = _faker.Date.RecentDateOnly(),
                 FkCurso = 101
             };
 
@@ -34,7 +35,7 @@ namespace UnitTest.CleanArchitecture
             var result = repository.InserirAluno(aluno);
 
             // Assert
-            Xunit.Assert.True(result);
+            Assert.True(result);
         }
 
         [Fact]
@@ -43,8 +44,8 @@ namespace UnitTest.CleanArchitecture
             // Arrange
             var aluno = new Aluno
             {
-                Nome = "João Marinho",
-                DataNascimento = new DateOnly(2000, 1, 1),
+                Nome = _faker.Name.FirstName(),
+                DataNascimento = _faker.Date.RecentDateOnly(),
                 Id = 102
             };
 
@@ -74,14 +75,13 @@ namespace UnitTest.CleanArchitecture
             var mockCommand = new Mock<IDbCommand>();
             var mockDataReader = new Mock<IDataReader>();
 
-            // Setup the mock data reader to return a row
             mockDataReader.SetupSequence(reader => reader.Read())
                           .Returns(true)
-                          .Returns(false); // First call returns a row, second returns no more rows
+                          .Returns(false);
 
             mockDataReader.Setup(reader => reader["AlunoID"]).Returns(1);
-            mockDataReader.Setup(reader => reader["NomeAluno"]).Returns("Joao Marinho");
-            mockDataReader.Setup(reader => reader["DataNascimento"]).Returns(new DateOnly(2000, 1, 1));
+            mockDataReader.Setup(reader => reader["NomeAluno"]).Returns(_faker.Name.FirstName());
+            mockDataReader.Setup(reader => reader["DataNascimento"]).Returns(_faker.Date.RecentDateOnly());
             mockDataReader.Setup(reader => reader["CursoID"]).Returns(101);
 
             mockCommand.Setup(cmd => cmd.ExecuteReader()).Returns(mockDataReader.Object);
@@ -94,12 +94,12 @@ namespace UnitTest.CleanArchitecture
             var result = repository.ConsultarAluno();
 
             // Assert
-            Xunit.Assert.Single(result);
+            Assert.Single(result);
             var aluno = result[0];
-            Xunit.Assert.Equal(1, aluno.Id);
-            Xunit.Assert.Equal("John Doe", aluno.Nome);
-            Xunit.Assert.Equal(new DateOnly(2000, 1, 1), aluno.DataNascimento);
-            Xunit.Assert.Equal(101, aluno.FkCurso);
+            Assert.Equal(1, aluno.Id);
+            Assert.Equal(_faker.Name.FirstName(), aluno.Nome);
+            Assert.Equal(_faker.Date.RecentDateOnly(), aluno.DataNascimento);
+            Assert.Equal(101, aluno.FkCurso);
         }
 
         [Fact]
@@ -109,8 +109,8 @@ namespace UnitTest.CleanArchitecture
             var aluno = new Aluno
             {
                 Id = 1,
-                Nome = "João Marinho",
-                DataNascimento = new DateOnly(2000, 1, 1)
+                Nome = _faker.Name.FirstName(),
+                DataNascimento = _faker.Date.RecentDateOnly()
             };
 
             var mockFactory = new Mock<SqlFactory>();
@@ -127,7 +127,7 @@ namespace UnitTest.CleanArchitecture
             var result = repository.AlterarAluno(aluno);
 
             // Assert
-            Xunit.Assert.True(result);
+            Assert.True(result);
         }
 
         [Fact]
@@ -137,8 +137,8 @@ namespace UnitTest.CleanArchitecture
             var aluno = new Aluno
             {
                 Id = 1,
-                Nome = "João Marinho",
-                DataNascimento = new DateOnly(2000, 1, 1)
+                Nome = _faker.Name.FirstName(),
+                DataNascimento = _faker.Date.RecentDateOnly()
             };
 
             var mockFactory = new Mock<SqlFactory>();
@@ -155,7 +155,7 @@ namespace UnitTest.CleanArchitecture
             var result = repository.AlterarAluno(aluno);
 
             // Assert
-            Xunit.Assert.False(result);
+            Assert.False(result);
         }
 
         [Fact]
@@ -178,7 +178,7 @@ namespace UnitTest.CleanArchitecture
             var result = repository.ExcluirAluno(id);
 
             // Assert
-            Xunit.Assert.True(result);
+            Assert.True(result);
         }
 
         [Fact]
@@ -201,7 +201,7 @@ namespace UnitTest.CleanArchitecture
             var result = repository.ExcluirAluno(id);
 
             // Assert
-            Xunit.Assert.False(result);
+            Assert.False(result);
         }
     }
 }

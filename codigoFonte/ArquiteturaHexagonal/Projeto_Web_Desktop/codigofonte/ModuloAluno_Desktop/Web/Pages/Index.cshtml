@@ -1,0 +1,63 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Consulta de Alunos";
+}
+
+<h2>Consulta de Alunos</h2>
+
+<table class="table">
+    <thead>
+        <tr>            
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Curso</th>
+            <th>Email</th>
+            <th>Data de Matrícula</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var aluno in Model.Alunos)
+        {
+            <tr>
+                <td>@aluno.Id</td>
+                <td>@aluno.Nome</td>
+                <td>@aluno.Idade</td>
+                <td>@aluno.Curso</td>
+                <td>@aluno.Email</td>
+                <td>@aluno.DataDeMatricula.ToString("dd/MM/yyyy")</td>
+                <td>@aluno.Endereco</td>
+                <td>@aluno.Telefone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table tr:hover {
+        background-color: #ddd;
+    }
+
+</style>

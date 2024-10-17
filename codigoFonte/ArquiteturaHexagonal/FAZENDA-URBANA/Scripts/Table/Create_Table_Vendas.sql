@@ -1,0 +1,18 @@
+USE BD_FAZENDA;
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Vendas')
+BEGIN
+    PRINT 'A tabela já existe.'
+END
+ELSE
+BEGIN
+	CREATE TABLE Vendas 
+	(
+		  Id INT NOT NULL PRIMARY KEY IDENTITY,
+		  Produto VARCHAR(30) NOT NULL,
+		  QuantidadeVendida VARCHAR(15) NOT NULL,
+		  ValorTotal DECIMAL(10, 2) NOT NULL,
+		  FormaDePagamento VARCHAR(50) NOT NULL
+	);
+	PRINT 'Tabela criada com sucesso.'
+END

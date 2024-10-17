@@ -1,0 +1,17 @@
+USE BD_FAZENDA;
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Funcionario')
+BEGIN
+    PRINT 'A tabela já existe.'
+END
+ELSE
+BEGIN
+	CREATE TABLE Funcionario 
+	(
+		  Id INT NOT NULL PRIMARY KEY IDENTITY,
+		  NomeFuncionario VARCHAR(100) NOT NULL,
+		  CPF VARCHAR(15) NOT NULL,
+		  Funcao VARCHAR(50) NOT NULL
+	);
+PRINT 'Tabela criada com sucesso.'
+END
