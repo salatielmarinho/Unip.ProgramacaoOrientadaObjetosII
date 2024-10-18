@@ -15,7 +15,7 @@ namespace Repository.Repository
             _connection = factory.SqlConnection();
         }
 
-        public bool IncluirUsuario(UsuarioEntitie usuarioEntitie)
+        public bool IncluirUsuario(Usuario usuario)
         {
             bool incluirUsuario = false;
             try
@@ -25,15 +25,16 @@ namespace Repository.Repository
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@Nome", usuarioEntitie.Nome);
-                    command.Parameters.AddWithValue("@Cep", usuarioEntitie.Cep);
-                    command.Parameters.AddWithValue("@Endereco", usuarioEntitie.Endereco);
-                    command.Parameters.AddWithValue("@Complemento", usuarioEntitie.Complemento);
-                    command.Parameters.AddWithValue("@Numero", usuarioEntitie.Numero);
-                    command.Parameters.AddWithValue("@Bairro", usuarioEntitie.Bairro);
-                    command.Parameters.AddWithValue("@Uf", usuarioEntitie.Uf);
-                    command.Parameters.AddWithValue("@Email", usuarioEntitie.Email);
-                    command.Parameters.AddWithValue("@Senha", usuarioEntitie.Senha);
+                    command.Parameters.AddWithValue("@Fk_Perfil", usuario.Fk_Perfil);
+                    command.Parameters.AddWithValue("@Nome", usuario.Nome);
+                    command.Parameters.AddWithValue("@Cep", usuario.Cep);
+                    command.Parameters.AddWithValue("@Endereco", usuario.Endereco);
+                    command.Parameters.AddWithValue("@Complemento", usuario.Complemento);
+                    command.Parameters.AddWithValue("@Numero", usuario.Numero);
+                    command.Parameters.AddWithValue("@Bairro", usuario.Bairro);
+                    command.Parameters.AddWithValue("@Uf", usuario.Uf);
+                    command.Parameters.AddWithValue("@Email", usuario.Email);
+                    command.Parameters.AddWithValue("@Senha", usuario.Senha);
 
                     if (command.ExecuteNonQuery() > 0)
                     {
@@ -50,9 +51,9 @@ namespace Repository.Repository
             return incluirUsuario;
         }
 
-        public List<UsuarioEntitie> ConsultarUsuario(string nomeCliente)
+        public List<Usuario> ConsultarUsuario(string nomeCliente)
         {
-            List<UsuarioEntitie> lstUsuarioEntitie = new List<UsuarioEntitie>();
+            List<Usuario> lstUsuarios = new List<Usuario>();
             try
             {
                 _connection.Open();
@@ -66,14 +67,22 @@ namespace Repository.Repository
                     {
                         if (reader.Read())
                         {
-                            UsuarioEntitie usuarioEntitie = new UsuarioEntitie
+                            Usuario usuario = new Usuario
                             {
                                 Id = (int)reader["Id"],
+                                NomePerfil = reader["NomePerfil"].ToString(),
                                 Nome = reader["Nome"].ToString(),
                                 Cep = reader["Cep"].ToString(),
-                                Email = reader["Email"].ToString()
+                                Endereco = reader["Endereco"].ToString(),
+                                Complemento = reader["Complemento"].ToString(),
+                                Numero = reader["Numero"].ToString(),
+                                Bairro = reader["Bairro"].ToString(),
+                                Uf = reader["UF"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                DataCriacao = (DateTime)reader["DataCriacao"]
+
                             };
-                            lstUsuarioEntitie.Add(usuarioEntitie);
+                            lstUsuarios.Add(usuario);
                         }
                     }
                     _connection.Close();
@@ -84,10 +93,10 @@ namespace Repository.Repository
                 _connection.Close();
                 throw;
             }
-            return lstUsuarioEntitie;
+            return lstUsuarios;
         }
 
-        public bool AlterarUsuario(UsuarioEntitie usuarioEntitie)
+        public bool AlterarUsuario(Usuario usuario)
         {
             bool alterarUsuario = false;
             try
@@ -97,8 +106,8 @@ namespace Repository.Repository
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@Nome", usuarioEntitie.Nome);
-                    command.Parameters.AddWithValue("@Id", usuarioEntitie.Id);
+                    command.Parameters.AddWithValue("@Nome", usuario.Nome);
+                    command.Parameters.AddWithValue("@Id", usuario.Id);
 
                     if (command.ExecuteNonQuery() > 0)
                     {

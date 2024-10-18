@@ -2,7 +2,7 @@
 using Domain.DTO;
 using Domain.Entities;
 using Newtonsoft.Json;
-using Repository.Interface;
+using Repository.Configuration;
 using System.Security.Cryptography;
 using Util.BD;
 using Util.Controles;
@@ -17,20 +17,22 @@ namespace Desktop.ModuloUsuario
         private readonly Email _email;
         private readonly EncryptionHelper _encryptionHelper;
         private readonly ValidadorTextBox _validadorTextBox;
-        private readonly UsuarioEntitie _usuarioEntitie;
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly Usuario _usuario;
+        private readonly RepositoryConfiguration _configuration;
         #endregion
 
         #region Construtor
-        public frmIncluirUsuario(SqlFactory factory, IUsuarioRepository usuarioRepository)
+        public frmIncluirUsuario(SqlFactory factory, RepositoryConfiguration configuration)
         {
             InitializeComponent();
+            CarregarPefil();
             _factory = factory;
             _email = new Email();
             _encryptionHelper = new EncryptionHelper();
             _validadorTextBox = new ValidadorTextBox();
-            _usuarioEntitie = new UsuarioEntitie();
-            _usuarioRepository = usuarioRepository;
+            _usuario = new Usuario();
+            _configuration = configuration;
+
         }
         #endregion
 
@@ -51,7 +53,7 @@ namespace Desktop.ModuloUsuario
             try
             {
                 ValidarPreenchimentodeCampos();
-                retornoIncluirUsuario = _usuarioRepository.IncluirUsuario(_usuarioEntitie);
+                retornoIncluirUsuario = _configuration.usuarioRepository.IncluirUsuario(_usuario);
                 if (retornoIncluirUsuario)
                 {
                     MessageBox.Show("Usuário cadastrado com sucesso");
@@ -111,37 +113,37 @@ namespace Desktop.ModuloUsuario
             {
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtNome.Parent))
                 {
-                    _usuarioEntitie.Nome = txtNome.Text;
+                    _usuario.Nome = txtNome.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(mskCep.Parent))
                 {
-                    _usuarioEntitie.Cep = mskCep.Text;
+                    _usuario.Cep = mskCep.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtEndereco.Parent))
                 {
-                    _usuarioEntitie.Endereco = txtEndereco.Text;
+                    _usuario.Endereco = txtEndereco.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtComplemento.Parent))
                 {
-                    _usuarioEntitie.Complemento = txtComplemento.Text;
+                    _usuario.Complemento = txtComplemento.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtNumero.Parent))
                 {
-                    _usuarioEntitie.Numero = txtNumero.Text;
+                    _usuario.Numero = txtNumero.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtBairro.Parent))
                 {
-                    _usuarioEntitie.Bairro = txtBairro.Text;
+                    _usuario.Bairro = txtBairro.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtUF.Parent))
                 {
-                    _usuarioEntitie.Uf = txtUF.Text;
+                    _usuario.Uf = txtUF.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtEmail.Parent))
                 {
                     if (_email.ValidarEmail(txtEmail.Text))
                     {
-                        _usuarioEntitie.Email = txtEmail.Text;
+                        _usuario.Email = txtEmail.Text;
                     }
                     else
                     {
@@ -150,11 +152,10 @@ namespace Desktop.ModuloUsuario
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtSenha.Parent))
                 {
-                    // Cria uma nova instância da classe Aes.
                     using (Aes myAes = Aes.Create())
                     {
-                        byte[] senha = _encryptionHelper.EncryptStringToBytes_Aes(txtEmail.Text, myAes.Key, myAes.IV);
-                        _usuarioEntitie.Senha = senha;
+                        byte[] senha = _encryptionHelper.EncryptStringToBytes_Aes(txtSenha.Text, myAes.Key, myAes.IV);
+                        _usuario.Senha = senha;
                     }
                 }
             }
@@ -163,11 +164,12 @@ namespace Desktop.ModuloUsuario
                 throw;
             }
         }
-        #endregion
-
-        private void mskCep_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void CarregarPefil()
         {
-
+            //cbxPerfil.DataSource = criar método para consultar perfil;
+            cbxPerfil.DisplayMember = "NomePerfil";
+            cbxPerfil.ValueMember = "Id";
         }
+        #endregion              
     }
 }

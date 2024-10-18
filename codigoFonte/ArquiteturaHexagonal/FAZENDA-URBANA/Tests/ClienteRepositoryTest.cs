@@ -1,26 +1,24 @@
 using Bogus;
 using Domain.Entities;
 using Moq;
-using Repository.Repository;
+using Repository.Configuration;
 using System.Data;
 using Util.BD;
-using Xunit;
 
-namespace TesteUnitario
+namespace Tests
 {
     public class ClienteRepositoryTest
     {
-        private readonly Mock<IDbConnection> _mockConnection;
-        private readonly Mock<SqlFactory> _mockFactory;
-        private readonly ClienteRepository _repository;
-        private readonly Faker _faker;
+        private readonly Mock<IDbConnection>? _mockConnection;
+        private readonly Mock<SqlFactory>? _mockFactory;
+        private readonly RepositoryConfiguration _configuration;
+        private readonly Faker? _faker;
 
         public ClienteRepositoryTest()
         {
             _mockConnection = new Mock<IDbConnection>();
             _mockFactory = new Mock<SqlFactory>();
-            _mockFactory.Setup(f => f.SqlConnection()).Returns(_mockConnection.Object);
-            _repository = new ClienteRepository(_mockFactory.Object);
+            _configuration = new RepositoryConfiguration();
             _faker = new Faker();
         }
 
@@ -28,16 +26,16 @@ namespace TesteUnitario
         public void IncluirCliente_DeveRetornarTrue_QuandoClienteIncluidoComSucesso()
         {
             // Arrange
-            var cliente = new Cliente { NomeCliente = _faker.Person.FirstName, Cpf = "123.456.789-00", Email = _faker.Person.Email, Senha = new byte[10] };
+            var cliente = new Cliente { NomeCliente = "Teste", Cpf = "123.456.789-00", Email = _faker.Person.Email };
             var mockCommand = new Mock<IDbCommand>();
             mockCommand.Setup(m => m.ExecuteNonQuery()).Returns(1);
             _mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
 
             // Act
-            var result = _repository.IncluirCliente(cliente);
+            var result = _configuration.clienteRepository.IncluirCliente(cliente);
 
             // Assert
-            Assert.IsTrue(result);
+            Xunit.Assert.True(result);
         }
 
         [Fact]
@@ -56,10 +54,10 @@ namespace TesteUnitario
             _mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
 
             // Act
-            var result = _repository.ConsultarCliente(nomeCliente);
+            var result = _configuration.clienteRepository.ConsultarCliente(nomeCliente);
 
             // Assert            
-            Assert.Equals("123.456.789-00", result[0].Cpf);
+            Xunit.Assert.Equal("123.456.789-00", result[0].Cpf);
         }
 
         [Fact]
@@ -72,10 +70,10 @@ namespace TesteUnitario
             _mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
 
             // Act
-            var result = _repository.AlterarCliente(cliente);
+            var result = _configuration.clienteRepository.AlterarCliente(cliente);
 
             // Assert
-            Assert.IsTrue(result);
+            Xunit.Assert.True(result);
         }
 
         [Fact]
@@ -88,10 +86,10 @@ namespace TesteUnitario
             _mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
 
             // Act
-            var result = _repository.ExcluirCliente(id);
+            var result = _configuration.clienteRepository.ExcluirCliente(id);
 
             // Assert
-            Assert.IsTrue(result);
+            Xunit.Assert.True(result);
         }
 
         [Fact]
@@ -104,10 +102,10 @@ namespace TesteUnitario
             _mockConnection.Setup(m => m.CreateCommand()).Returns(mockCommand.Object);
 
             // Act
-            var result = _repository.ExcluirCliente(id);
+            var result = _configuration.clienteRepository.ExcluirCliente(id);
 
             // Assert
-            Assert.IsFalse(result);
+            Xunit.Assert.False(result);
         }
     }
 }

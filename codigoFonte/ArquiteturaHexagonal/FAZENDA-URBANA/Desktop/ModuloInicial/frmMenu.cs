@@ -1,6 +1,6 @@
 ﻿using Desktop.ModuloCliente;
 using Desktop.ModuloUsuario;
-using Repository.Interface;
+using Repository.Configuration;
 using Util.BD;
 
 namespace Desktop.ModuloInicial
@@ -8,23 +8,24 @@ namespace Desktop.ModuloInicial
     public partial class frmMenu : Form
     {
         private readonly SqlFactory _factory;
-        private readonly IClienteRepository _clienteRepository;
-        private readonly IUsuarioRepository _usuarioRepository;
-        public frmMenu(SqlFactory factory)
+        private readonly RepositoryConfiguration _configuration;
+
+        public frmMenu(SqlFactory factory, RepositoryConfiguration configuration)
         {
             InitializeComponent();
             _factory = factory;
+            _configuration = configuration;
         }
 
         private void gerenciarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                frmGerenciarCliente frmGerenciarCliente = new frmGerenciarCliente(_factory, _clienteRepository);
+                frmGerenciarCliente frmGerenciarCliente = new frmGerenciarCliente(_factory, _configuration);
                 frmGerenciarCliente.MdiParent = this;
                 frmGerenciarCliente.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Erro: " + ex.Message);
             }
@@ -34,7 +35,7 @@ namespace Desktop.ModuloInicial
         {
             try
             {
-                frmIncluirCliente frmIncluirCliente = new frmIncluirCliente(_factory, _clienteRepository);
+                frmIncluirCliente frmIncluirCliente = new frmIncluirCliente(_factory, _configuration);
                 frmIncluirCliente.MdiParent = this;
                 frmIncluirCliente.Show();
             }
@@ -66,7 +67,7 @@ namespace Desktop.ModuloInicial
         {
             try
             {
-                frmIncluirUsuario frmIncluirUsuario = new frmIncluirUsuario(_factory, _usuarioRepository);
+                frmIncluirUsuario frmIncluirUsuario = new frmIncluirUsuario(_factory, _configuration);
                 frmIncluirUsuario.MdiParent = this;
                 frmIncluirUsuario.Show();
             }

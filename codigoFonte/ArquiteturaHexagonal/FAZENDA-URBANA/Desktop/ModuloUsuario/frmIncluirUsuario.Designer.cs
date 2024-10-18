@@ -49,6 +49,8 @@
             lblNumero = new Label();
             txtNome = new TextBox();
             lblNome = new Label();
+            cbxPerfil = new ComboBox();
+            lblPerfil = new Label();
             gbIncluirUsuario.SuspendLayout();
             SuspendLayout();
             // 
@@ -66,9 +68,8 @@
             mskCep.Location = new Point(125, 60);
             mskCep.Mask = "00000-000";
             mskCep.Name = "mskCep";
-            mskCep.Size = new Size(64, 23);
+            mskCep.Size = new Size(65, 23);
             mskCep.TabIndex = 2;
-            mskCep.MaskInputRejected += mskCep_MaskInputRejected;
             mskCep.Leave += mskCep_Leave;
             // 
             // lblEndereco
@@ -82,7 +83,6 @@
             // 
             // txtEndereco
             // 
-            txtEndereco.Enabled = false;
             txtEndereco.Location = new Point(125, 104);
             txtEndereco.Name = "txtEndereco";
             txtEndereco.Size = new Size(398, 23);
@@ -106,6 +106,8 @@
             // 
             // gbIncluirUsuario
             // 
+            gbIncluirUsuario.Controls.Add(lblPerfil);
+            gbIncluirUsuario.Controls.Add(cbxPerfil);
             gbIncluirUsuario.Controls.Add(btnSair);
             gbIncluirUsuario.Controls.Add(btnIncluirUsuario);
             gbIncluirUsuario.Controls.Add(txtSenha);
@@ -157,6 +159,7 @@
             txtSenha.Location = new Point(125, 408);
             txtSenha.MaxLength = 8;
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '*';
             txtSenha.Size = new Size(249, 23);
             txtSenha.TabIndex = 9;
             // 
@@ -188,7 +191,6 @@
             // 
             // txtUF
             // 
-            txtUF.Enabled = false;
             txtUF.Location = new Point(125, 314);
             txtUF.MaxLength = 2;
             txtUF.Name = "txtUF";
@@ -206,7 +208,6 @@
             // 
             // txtBairro
             // 
-            txtBairro.Enabled = false;
             txtBairro.Location = new Point(125, 263);
             txtBairro.MaxLength = 50;
             txtBairro.Name = "txtBairro";
@@ -255,6 +256,24 @@
             lblNome.TabIndex = 6;
             lblNome.Text = "Nome:";
             // 
+            // cbxPerfil
+            // 
+            cbxPerfil.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPerfil.FormattingEnabled = true;
+            cbxPerfil.Location = new Point(125, 454);
+            cbxPerfil.Name = "cbxPerfil";
+            cbxPerfil.Size = new Size(249, 23);
+            cbxPerfil.TabIndex = 18;
+            // 
+            // lblPerfil
+            // 
+            lblPerfil.AutoSize = true;
+            lblPerfil.Location = new Point(32, 462);
+            lblPerfil.Name = "lblPerfil";
+            lblPerfil.Size = new Size(34, 15);
+            lblPerfil.TabIndex = 19;
+            lblPerfil.Text = "Perfil";
+            // 
             // frmIncluirUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -293,5 +312,7 @@
         private Label lblEmail;
         private TextBox txtUF;
         private Label lblUf;
+        private Label lblPerfil;
+        private ComboBox cbxPerfil;
     }
 }

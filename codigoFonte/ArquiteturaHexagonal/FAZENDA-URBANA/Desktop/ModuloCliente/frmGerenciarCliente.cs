@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Repository.Interface;
+using Repository.Configuration;
 using Util.BD;
 
 namespace Desktop.ModuloCliente
@@ -7,24 +7,24 @@ namespace Desktop.ModuloCliente
     public partial class frmGerenciarCliente : Form
     {
         private readonly SqlFactory _factory;
-        private readonly IClienteRepository _clienteRepository;
-        private readonly ClienteEntitie _clienteEntitie;
+        private readonly RepositoryConfiguration _configuration;
+        private readonly Cliente _clienteEntitie;
 
-        public frmGerenciarCliente(SqlFactory factory, IClienteRepository clienteRepository)
+        public frmGerenciarCliente(SqlFactory factory, RepositoryConfiguration configuration)
         {
             InitializeComponent();
             _factory = factory;
-            _clienteRepository = clienteRepository;
-            _clienteEntitie = new ClienteEntitie();
+            _configuration = configuration;
+            _clienteEntitie = new Cliente();
         }
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
-        {            
+        {
             try
             {
                 if (!String.IsNullOrEmpty(txtFiltro.Text))
                 {
-                    dgCliente.DataSource = _clienteRepository.ConsultarCliente(txtFiltro.Text);
+                    dgCliente.DataSource = _configuration.clienteRepository.ConsultarCliente(txtFiltro.Text);
                     if (dgCliente.RowCount == 0)
                     {
                         MessageBox.Show("Não existem registros para o cliente informado.");
@@ -58,7 +58,7 @@ namespace Desktop.ModuloCliente
         }
 
         private void btnAlterarCliente_Click(object sender, EventArgs e)
-        {            
+        {
             bool clienteAtualizado = false;
             try
             {
@@ -74,7 +74,7 @@ namespace Desktop.ModuloCliente
                         MessageBox.Show("Preencher o campo Nome.");
                     }
                     _clienteEntitie.Id = Convert.ToInt16(selectedRow.Cells["Id"].Value);
-                    clienteAtualizado = _clienteRepository.AlterarCliente(_clienteEntitie);
+                    clienteAtualizado = _configuration.clienteRepository.AlterarCliente(_clienteEntitie);
                     if (clienteAtualizado)
                     {
                         MessageBox.Show("Dados do cliente atualizados com sucesso.");
@@ -104,14 +104,14 @@ namespace Desktop.ModuloCliente
         }
 
         private void btnExcluirCliente_Click(object sender, EventArgs e)
-        {            
+        {
             bool clienteExcluido = false;
             try
             {
                 if (dgCliente.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = dgCliente.SelectedRows[0];
-                    clienteExcluido = _clienteRepository.ExcluirCliente(Convert.ToInt16(selectedRow.Cells["Id"].Value));
+                    clienteExcluido = _configuration.clienteRepository.ExcluirCliente(Convert.ToInt16(selectedRow.Cells["Id"].Value));
                     if (clienteExcluido)
                     {
                         MessageBox.Show("Dados do cliente excluído com sucesso.");

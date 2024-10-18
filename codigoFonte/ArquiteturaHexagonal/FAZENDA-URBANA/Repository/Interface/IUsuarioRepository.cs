@@ -4,9 +4,9 @@ namespace Repository.Interface
 {
     public interface IUsuarioRepository
     {
-        bool IncluirUsuario(UsuarioEntitie usuarioEntitie);
-        List<UsuarioEntitie> ConsultarUsuario(string nomeCliente);
-        bool AlterarUsuario(UsuarioEntitie usuarioEntitie);
+        bool IncluirUsuario(Usuario usuario);
+        List<Usuario> ConsultarUsuario(string nomeCliente);
+        bool AlterarUsuario(Usuario usuario);
         bool ExcluirUsuario(int id);
     }
 }

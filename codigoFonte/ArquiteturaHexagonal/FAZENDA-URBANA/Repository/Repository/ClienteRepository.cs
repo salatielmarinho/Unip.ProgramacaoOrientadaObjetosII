@@ -15,7 +15,7 @@ namespace Repository.Repository
             _connection = factory.SqlConnection();
         }
 
-        public bool IncluirCliente(ClienteEntitie clienteEntitie)
+        public bool IncluirCliente(Cliente cliente)
         {
             bool incluirCliente = false;
             try
@@ -25,10 +25,9 @@ namespace Repository.Repository
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@NomeCliente", clienteEntitie.NomeCliente);
-                    command.Parameters.AddWithValue("@Cpf", clienteEntitie.Cpf);
-                    command.Parameters.AddWithValue("@Email", clienteEntitie.Email);
-                    command.Parameters.AddWithValue("@Senha", clienteEntitie.Senha);
+                    command.Parameters.AddWithValue("@NomeCliente", cliente.NomeCliente);
+                    command.Parameters.AddWithValue("@Cpf", cliente.Cpf);
+                    command.Parameters.AddWithValue("@Email", cliente.Email);
 
                     if (command.ExecuteNonQuery() > 0)
                     {
@@ -45,9 +44,9 @@ namespace Repository.Repository
             return incluirCliente;
         }
 
-        public List<ClienteEntitie> ConsultarCliente(string nomeCliente)
+        public List<Cliente> ConsultarCliente(string nomeCliente)
         {
-            List<ClienteEntitie> lstClienteEntitie = new List<ClienteEntitie>();
+            List<Cliente> lstClientes = new List<Cliente>();
             try
             {
                 _connection.Open();
@@ -61,14 +60,15 @@ namespace Repository.Repository
                     {
                         if (reader.Read())
                         {
-                            ClienteEntitie clienteEntitie = new ClienteEntitie
+                            Cliente cliente = new Cliente
                             {
                                 Id = (int)reader["Id"],
                                 NomeCliente = reader["NomeCliente"].ToString(),
                                 Cpf = reader["Cpf"].ToString(),
-                                Email = reader["Email"].ToString()
+                                Email = reader["Email"].ToString(),
+                                DataCriacao = (DateTime)reader["DataCriacao"]
                             };
-                            lstClienteEntitie.Add(clienteEntitie);
+                            lstClientes.Add(cliente);
                         }
                     }
                     _connection.Close();
@@ -79,10 +79,10 @@ namespace Repository.Repository
                 _connection.Close();
                 throw;
             }
-            return lstClienteEntitie;
+            return lstClientes;
         }
 
-        public bool AlterarCliente(ClienteEntitie clienteEntitie)
+        public bool AlterarCliente(Cliente cliente)
         {
             bool alterarCliente = false;
             try
@@ -92,8 +92,8 @@ namespace Repository.Repository
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@NomeCliente", clienteEntitie.NomeCliente);
-                    command.Parameters.AddWithValue("@Id", clienteEntitie.Id);
+                    command.Parameters.AddWithValue("@NomeCliente", cliente.NomeCliente);
+                    command.Parameters.AddWithValue("@Id", cliente.Id);
 
                     if (command.ExecuteNonQuery() > 0)
                     {

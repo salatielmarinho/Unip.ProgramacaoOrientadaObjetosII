@@ -2,6 +2,7 @@
 using Desktop.ModuloInicial;
 using Desktop.ModuloUsuario;
 using Microsoft.Extensions.DependencyInjection;
+using Repository.Configuration;
 using Repository.Interface;
 using Repository.Repository;
 using Util.BD;
@@ -21,6 +22,12 @@ namespace Desktop.Start
             serviceCollection.AddScoped<SqlFactory>();
             serviceCollection.AddTransient<IUsuarioRepository, UsuarioRepository>();
             serviceCollection.AddTransient<IClienteRepository, ClienteRepository>();
+
+            serviceCollection.AddScoped<RepositoryConfiguration>(provider => new RepositoryConfiguration
+            {
+                clienteRepository = provider.GetRequiredService<IClienteRepository>()
+            });
+
             return serviceCollection.BuildServiceProvider();
         }
     }

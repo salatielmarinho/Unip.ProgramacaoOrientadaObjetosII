@@ -31,10 +31,8 @@
             lblNomeCliente = new Label();
             gbIncluirCliente = new GroupBox();
             mskCpf = new MaskedTextBox();
-            txtSenha = new TextBox();
             txtEmail = new TextBox();
             txtNomeCliente = new TextBox();
-            lblSenha = new Label();
             lblEmail = new Label();
             lblCpf = new Label();
             btnIncluirCliente = new Button();
@@ -54,36 +52,24 @@
             // gbIncluirCliente
             // 
             gbIncluirCliente.Controls.Add(mskCpf);
-            gbIncluirCliente.Controls.Add(txtSenha);
             gbIncluirCliente.Controls.Add(txtEmail);
             gbIncluirCliente.Controls.Add(txtNomeCliente);
-            gbIncluirCliente.Controls.Add(lblSenha);
             gbIncluirCliente.Controls.Add(lblEmail);
             gbIncluirCliente.Controls.Add(lblCpf);
             gbIncluirCliente.Controls.Add(lblNomeCliente);
             gbIncluirCliente.Location = new Point(25, 12);
             gbIncluirCliente.Name = "gbIncluirCliente";
-            gbIncluirCliente.Size = new Size(631, 178);
+            gbIncluirCliente.Size = new Size(631, 142);
             gbIncluirCliente.TabIndex = 1;
             gbIncluirCliente.TabStop = false;
             // 
             // mskCpf
             // 
             mskCpf.Location = new Point(102, 64);
-            mskCpf.Mask = "000.000.000-00";
+            mskCpf.Mask = "000,000,000-00";
             mskCpf.Name = "mskCpf";
-            mskCpf.Size = new Size(80, 23);
+            mskCpf.Size = new Size(75, 23);
             mskCpf.TabIndex = 2;
-            mskCpf.MaskInputRejected += mskCpf_MaskInputRejected;
-            // 
-            // txtSenha
-            // 
-            txtSenha.Location = new Point(102, 126);
-            txtSenha.MaxLength = 4;
-            txtSenha.Name = "txtSenha";
-            txtSenha.PasswordChar = '*';
-            txtSenha.Size = new Size(80, 23);
-            txtSenha.TabIndex = 4;
             // 
             // txtEmail
             // 
@@ -100,15 +86,6 @@
             txtNomeCliente.Name = "txtNomeCliente";
             txtNomeCliente.Size = new Size(326, 23);
             txtNomeCliente.TabIndex = 1;
-            // 
-            // lblSenha
-            // 
-            lblSenha.AutoSize = true;
-            lblSenha.Location = new Point(13, 133);
-            lblSenha.Name = "lblSenha";
-            lblSenha.Size = new Size(42, 15);
-            lblSenha.TabIndex = 3;
-            lblSenha.Text = "Senha:";
             // 
             // lblEmail
             // 
@@ -169,13 +146,11 @@
 
         private Label lblNomeCliente;
         private GroupBox gbIncluirCliente;
-        private Label lblSenha;
         private Label lblEmail;
         private Label lblCpf;
         private Button btnIncluirCliente;
         private Button btnSair;
         private MaskedTextBox mskCpf;
-        private TextBox txtSenha;
         private TextBox txtEmail;
         private TextBox txtNomeCliente;
     }

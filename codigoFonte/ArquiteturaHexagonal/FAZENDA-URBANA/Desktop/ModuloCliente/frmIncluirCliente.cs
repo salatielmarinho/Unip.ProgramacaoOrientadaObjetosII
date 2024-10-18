@@ -1,7 +1,7 @@
+using CpfCnpjLibrary;
 using Desktop.ValidadoresComponentes;
 using Domain.Entities;
-using Repository.Interface;
-using System.Security.Cryptography;
+using Repository.Configuration;
 using Util.BD;
 using Util.Controles;
 using Util.Encrypt;
@@ -12,25 +12,24 @@ namespace Desktop
     {
         #region Propriedades
         private readonly SqlFactory _factory;
-        private readonly CPF _cpf;
         private readonly Email _email;
         private readonly EncryptionHelper _encryptionHelper;
         private readonly ValidadorTextBox _validadorTextBox;
-        private readonly ClienteEntitie _clienteEntitie;
-        private readonly IClienteRepository _clienteRepository;
+        private readonly Cliente _cliente;
+        private readonly RepositoryConfiguration _configuration;
+
         #endregion
 
         #region Construtor
-        public frmIncluirCliente(SqlFactory factory, IClienteRepository clienteRepository)
+        public frmIncluirCliente(SqlFactory factory, RepositoryConfiguration configuration)
         {
             InitializeComponent();
             _factory = factory;
-            _cpf = new CPF();
+            _configuration = configuration;
             _email = new Email();
             _encryptionHelper = new EncryptionHelper();
             _validadorTextBox = new ValidadorTextBox();
-            _clienteEntitie = new ClienteEntitie();
-            _clienteRepository = clienteRepository;
+            _cliente = new Cliente();
         }
         #endregion
 
@@ -40,12 +39,15 @@ namespace Desktop
             bool retornoIncluirCliente = false;
             try
             {
-                ValidarPreenchimentodeCampos();
-                retornoIncluirCliente = _clienteRepository.IncluirCliente(_clienteEntitie);
-                if (retornoIncluirCliente)
+                bool retornoValidarPreenchimentodeCampos = ValidarPreenchimentodeCampos();
+                if (retornoValidarPreenchimentodeCampos)
                 {
-                    MessageBox.Show("Cliente cadastrado com sucesso");
-                    InicializarTela();
+                    retornoIncluirCliente = _configuration.clienteRepository.IncluirCliente(_cliente);
+                    if (retornoIncluirCliente)
+                    {
+                        MessageBox.Show("Cliente cadastrado com sucesso");
+                        InicializarTela();
+                    }
                 }
             }
             catch (Exception ex)
@@ -73,7 +75,6 @@ namespace Desktop
                 txtNomeCliente.Clear();
                 mskCpf.Clear();
                 txtEmail.Clear();
-                txtSenha.Clear();
                 txtNomeCliente.Focus();
             }
             catch
@@ -81,43 +82,37 @@ namespace Desktop
                 throw;
             }
         }
-        private void ValidarPreenchimentodeCampos()
+        private bool ValidarPreenchimentodeCampos()
         {
+            bool retornoValidarPreenchimentodeCampos = true;
             try
             {
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtNomeCliente.Parent))
                 {
-                    _clienteEntitie.NomeCliente = txtNomeCliente.Text;
+                    _cliente.NomeCliente = txtNomeCliente.Text;
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(mskCpf.Parent))
                 {
-                    if (_cpf.ValidarCPF(mskCpf.Text))
+                    if (Cpf.Validar(mskCpf.Text))
                     {
-                        _clienteEntitie.Cpf = mskCpf.Text;
+                        _cliente.Cpf = mskCpf.Text;
                     }
                     else
                     {
                         MessageBox.Show("CPF inválido");
+                        return false;
                     }
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtEmail.Parent))
                 {
                     if (_email.ValidarEmail(txtEmail.Text))
                     {
-                        _clienteEntitie.Email = txtEmail.Text;
+                        _cliente.Email = txtEmail.Text;
                     }
                     else
                     {
                         MessageBox.Show("Email inválido");
-                    }
-                }
-                if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtSenha.Parent))
-                {
-                    // Cria uma nova instância da classe Aes.
-                    using (Aes myAes = Aes.Create())
-                    {
-                        byte[] senha = _encryptionHelper.EncryptStringToBytes_Aes(txtEmail.Text, myAes.Key, myAes.IV);
-                        _clienteEntitie.Senha = senha;
+                        return false;
                     }
                 }
             }
@@ -125,12 +120,8 @@ namespace Desktop
             {
                 throw;
             }
+            return retornoValidarPreenchimentodeCampos;
         }
-        #endregion
-
-        private void mskCpf_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
+        #endregion        
     }
 }
