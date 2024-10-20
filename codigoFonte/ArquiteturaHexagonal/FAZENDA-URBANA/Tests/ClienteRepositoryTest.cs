@@ -1,9 +1,9 @@
 using Bogus;
 using Domain.Entities;
+using Infrastructure.Configuration;
+using Infrastructure.Factory;
 using Moq;
-using Repository.Configuration;
 using System.Data;
-using Util.BD;
 
 namespace Tests
 {
