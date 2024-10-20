@@ -23,12 +23,12 @@ namespace Presentation.ModuloUsuario
         public frmIncluirUsuario(ServiceConfiguration configuration)
         {
             InitializeComponent();
-            CarregarPefil();
             _email = new Email();
             _encryptionHelper = new EncryptionHelper();
             _validadorTextBox = new ValidadorTextBox();
             _usuario = new Usuario();
             _configuration = configuration;
+            CarregarPefil();
 
         }
         #endregion
@@ -163,7 +163,7 @@ namespace Presentation.ModuloUsuario
         }
         private void CarregarPefil()
         {
-            //cbxPerfil.DataSource = criar método para consultar perfil;
+            cbxPerfil.DataSource = _configuration.perfilService.ConsultarTodosPerfis();
             cbxPerfil.DisplayMember = "NomePerfil";
             cbxPerfil.ValueMember = "Id";
         }

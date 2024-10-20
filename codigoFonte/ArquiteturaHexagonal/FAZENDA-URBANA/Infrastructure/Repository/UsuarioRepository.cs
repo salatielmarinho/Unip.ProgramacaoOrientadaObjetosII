@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
-using Domain.Interface;
 using Infrastructure.Factory;
+using Infrastructure.Interface;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
@@ -65,7 +65,7 @@ namespace Repository.Repository
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
                             Usuario usuario = new Usuario
                             {
@@ -84,6 +84,7 @@ namespace Repository.Repository
                             };
                             lstUsuarios.Add(usuario);
                         }
+                        reader.Close();
                     }
                     _connection.Close();
                 }

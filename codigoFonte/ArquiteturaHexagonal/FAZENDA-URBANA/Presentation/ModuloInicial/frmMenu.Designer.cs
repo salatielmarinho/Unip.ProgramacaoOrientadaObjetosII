@@ -70,14 +70,14 @@
             // gerenciarToolStripMenuItem
             // 
             gerenciarToolStripMenuItem.Name = "gerenciarToolStripMenuItem";
-            gerenciarToolStripMenuItem.Size = new Size(180, 22);
+            gerenciarToolStripMenuItem.Size = new Size(124, 22);
             gerenciarToolStripMenuItem.Text = "Gerenciar";
             gerenciarToolStripMenuItem.Click += gerenciarToolStripMenuItem_Click;
             // 
             // incluirToolStripMenuItem
             // 
             incluirToolStripMenuItem.Name = "incluirToolStripMenuItem";
-            incluirToolStripMenuItem.Size = new Size(180, 22);
+            incluirToolStripMenuItem.Size = new Size(124, 22);
             incluirToolStripMenuItem.Text = "Incluir";
             incluirToolStripMenuItem.Click += incluirToolStripMenuItem_Click;
             // 
@@ -110,14 +110,15 @@
             // gerenciarToolStripMenuItem2
             // 
             gerenciarToolStripMenuItem2.Name = "gerenciarToolStripMenuItem2";
-            gerenciarToolStripMenuItem2.Size = new Size(124, 22);
+            gerenciarToolStripMenuItem2.Size = new Size(180, 22);
             gerenciarToolStripMenuItem2.Text = "Gerenciar";
             // 
             // incluirToolStripMenuItem2
             // 
             incluirToolStripMenuItem2.Name = "incluirToolStripMenuItem2";
-            incluirToolStripMenuItem2.Size = new Size(124, 22);
+            incluirToolStripMenuItem2.Size = new Size(180, 22);
             incluirToolStripMenuItem2.Text = "Incluir";
+            incluirToolStripMenuItem2.Click += incluirToolStripMenuItem2_Click;
             // 
             // produtoToolStripMenuItem
             // 

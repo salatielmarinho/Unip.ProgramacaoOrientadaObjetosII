@@ -11,7 +11,6 @@
   <ItemGroup>
     <Folder Include="ModuloFornecedor\" />
     <Folder Include="ModuloProduto\" />
-    <Folder Include="ModuloPerfil\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +21,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Applications\Applications.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ModuloPerfil\frmIncluirPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

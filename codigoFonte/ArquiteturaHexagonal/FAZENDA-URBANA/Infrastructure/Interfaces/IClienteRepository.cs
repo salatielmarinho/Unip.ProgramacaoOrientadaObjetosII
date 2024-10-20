@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Domain.Interface
+namespace Infrastructure.Interface
 {
     public interface IClienteRepository
     {

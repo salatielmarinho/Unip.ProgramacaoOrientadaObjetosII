@@ -1,5 +1,6 @@
 ﻿using Applications.Configuration;
 using Presentation.ModuloCliente;
+using Presentation.ModuloPerfil;
 using Presentation.ModuloUsuario;
 
 namespace Presentation.ModuloInicial
@@ -67,6 +68,20 @@ namespace Presentation.ModuloInicial
                 frmIncluirUsuario frmIncluirUsuario = new frmIncluirUsuario(_configuration);
                 frmIncluirUsuario.MdiParent = this;
                 frmIncluirUsuario.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+        }
+
+        private void incluirToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmIncluirPerfil frmIncluirPerfil = new frmIncluirPerfil(_configuration);
+                frmIncluirPerfil.MdiParent = this;
+                frmIncluirPerfil.Show();
             }
             catch (Exception ex)
             {
