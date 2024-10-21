@@ -8,5 +8,6 @@ namespace Infrastructure.Interface
         List<Usuario> ConsultarUsuario(string nomeCliente);
         bool AlterarUsuario(Usuario usuario);
         bool ExcluirUsuario(int id);
+        int ConsultarPerfilUsuario(Usuario usuario);
     }
 }

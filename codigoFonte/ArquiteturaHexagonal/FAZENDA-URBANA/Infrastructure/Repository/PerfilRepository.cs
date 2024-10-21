@@ -30,14 +30,16 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         incluirPerfil = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return incluirPerfil;
         }
@@ -67,13 +69,15 @@ namespace Repository.Repository
                             lstPerfils.Add(Perfil);
                         }
                     }
-                    _connection.Close();
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return lstPerfils;
         }
@@ -101,13 +105,15 @@ namespace Repository.Repository
                         }
                         reader.Close();
                     }
-                    _connection.Close();
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return lstPerfils;
         }
@@ -128,14 +134,16 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         alterarPerfil = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return alterarPerfil;
         }
@@ -161,8 +169,11 @@ namespace Repository.Repository
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return excluirPerfil;
         }

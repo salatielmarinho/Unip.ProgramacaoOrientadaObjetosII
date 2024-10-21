@@ -32,14 +32,16 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         incluirCliente = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return incluirCliente;
         }
@@ -72,13 +74,15 @@ namespace Repository.Repository
                         }
                         reader.Close();
                     }
-                    _connection.Close();
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return lstClientes;
         }
@@ -99,14 +103,16 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         alterarCliente = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return alterarCliente;
         }
@@ -126,14 +132,16 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         excluirCliente = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return excluirCliente;
         }

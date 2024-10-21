@@ -39,16 +39,51 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         incluirUsuario = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
             }
+            finally
+            {
+                _connection.Close();
+            }
             return incluirUsuario;
+        }
+
+        public int ConsultarPerfilUsuario(Usuario usuario)
+        {
+            int fkPerfil = 0;
+            try
+            {
+                _connection.Open();
+                using (SqlCommand command = new SqlCommand("ConsultarPerfilUsuario", (SqlConnection)_connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@NomeUsuario", usuario.Nome);
+                    command.Parameters.AddWithValue("@Senha", usuario.Senha);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            fkPerfil = (int)reader["Fk_Perfil"];
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return fkPerfil;
         }
 
         public List<Usuario> ConsultarUsuario(string nomeCliente)
@@ -86,13 +121,15 @@ namespace Repository.Repository
                         }
                         reader.Close();
                     }
-                    _connection.Close();
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return lstUsuarios;
         }
@@ -113,14 +150,16 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         alterarUsuario = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return alterarUsuario;
         }
@@ -140,14 +179,16 @@ namespace Repository.Repository
                     if (command.ExecuteNonQuery() > 0)
                     {
                         excluirUsuario = true;
-                        _connection.Close();
                     }
                 }
             }
             catch
             {
-                _connection.Close();
                 throw;
+            }
+            finally
+            {
+                _connection.Close();
             }
             return excluirUsuario;
         }

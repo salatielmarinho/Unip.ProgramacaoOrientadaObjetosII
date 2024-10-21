@@ -2,7 +2,6 @@ using Applications.Configuration;
 using CpfCnpjLibrary;
 using Desktop.ValidadoresComponentes;
 using Domain.Entities;
-using Infrastructure.Encrypt;
 using Infrastructure.Validadores;
 
 namespace Presentation.ModuloCliente
@@ -11,7 +10,6 @@ namespace Presentation.ModuloCliente
     {
         #region Propriedades
         private readonly Email _email;
-        private readonly EncryptionHelper _encryptionHelper;
         private readonly ValidadorTextBox _validadorTextBox;
         private readonly Cliente _cliente;
         private readonly ServiceConfiguration _configuration;
@@ -22,7 +20,6 @@ namespace Presentation.ModuloCliente
         {
             InitializeComponent();
             _email = new Email();
-            _encryptionHelper = new EncryptionHelper();
             _validadorTextBox = new ValidadorTextBox();
             _cliente = new Cliente();
             _configuration = configuration;

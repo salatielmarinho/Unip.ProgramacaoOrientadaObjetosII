@@ -1,35 +1,35 @@
 ﻿using Applications.Configuration;
 using Domain.Entities;
 
-namespace Presentation.ModuloCliente
+namespace Presentation.ModuloPerfil
 {
-    public partial class frmGerenciarCliente : Form
+    public partial class frmGerenciarPerfil : Form
     {
         #region Propriedades
-        private readonly Cliente _cliente;
+        private readonly Perfil _Perfil;
         private readonly ServiceConfiguration _configuration;
         #endregion
 
         #region Construtor
-        public frmGerenciarCliente(ServiceConfiguration configuration)
+        public frmGerenciarPerfil(ServiceConfiguration configuration)
         {
             InitializeComponent();
-            _cliente = new Cliente();
+            _Perfil = new Perfil();
             _configuration = configuration;
         }
         #endregion
 
         #region Eventos
-        private void btnPesquisarCliente_Click(object sender, EventArgs e)
+        private void btnPesquisarPerfil_Click(object sender, EventArgs e)
         {
             try
             {
                 if (!String.IsNullOrEmpty(txtFiltro.Text))
                 {
-                    dgPerfil.DataSource = _configuration.clienteService.ConsultarCliente(txtFiltro.Text);
+                    dgPerfil.DataSource = _configuration.perfilService.ConsultarPerfil(txtFiltro.Text);
                     if (dgPerfil.RowCount == 0)
                     {
-                        MessageBox.Show("Não existem registros para o cliente informado.");
+                        MessageBox.Show("Não existem registros para o Perfil informado.");
                     }
                 }
                 else
@@ -39,27 +39,27 @@ namespace Presentation.ModuloCliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao pesquisar dados do cliente: " + ex.Message);
+                MessageBox.Show("Erro ao pesquisar dados do Perfil: " + ex.Message);
             }
         }
-        private void dgCliente_SelectionChanged(object sender, EventArgs e)
+        private void dgPerfil_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
                 if (dgPerfil.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = dgPerfil.SelectedRows[0];
-                    txtNome.Text = selectedRow.Cells["NomeCliente"].Value.ToString();
+                    txtNome.Text = selectedRow.Cells["NomePerfil"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao selecionar dados do cliente: " + ex.Message);
+                MessageBox.Show("Erro ao selecionar dados do Perfil: " + ex.Message);
             }
         }
-        private void btnAlterarCliente_Click(object sender, EventArgs e)
+        private void btnAlterarPerfil_Click(object sender, EventArgs e)
         {
-            bool clienteAtualizado = false;
+            bool PerfilAtualizado = false;
             try
             {
                 if (dgPerfil.SelectedRows.Count > 0)
@@ -67,45 +67,45 @@ namespace Presentation.ModuloCliente
                     DataGridViewRow selectedRow = dgPerfil.SelectedRows[0];
                     if (!String.IsNullOrEmpty(txtNome.Text))
                     {
-                        _cliente.NomeCliente = txtNome.Text;
+                        _Perfil.NomePerfil = txtNome.Text;
                     }
                     else
                     {
                         MessageBox.Show("Preencher o campo Nome.");
                     }
-                    _cliente.Id = Convert.ToInt16(selectedRow.Cells["Id"].Value);
-                    clienteAtualizado = _configuration.clienteService.AlterarCliente(_cliente);
-                    if (clienteAtualizado)
+                    _Perfil.Id = Convert.ToInt16(selectedRow.Cells["Id"].Value);
+                    PerfilAtualizado = _configuration.perfilService.AlterarPerfil(_Perfil);
+                    if (PerfilAtualizado)
                     {
-                        MessageBox.Show("Dados do cliente atualizados com sucesso.");
+                        MessageBox.Show("Dados do Perfil atualizados com sucesso.");
                         LimparTela();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao atualizar dados do cliente: " + ex.Message);
+                MessageBox.Show("Erro ao atualizar dados do Perfil: " + ex.Message);
             }
         }
-        private void btnExcluirCliente_Click(object sender, EventArgs e)
+        private void btnExcluirPerfil_Click(object sender, EventArgs e)
         {
-            bool clienteExcluido = false;
+            bool PerfilExcluido = false;
             try
             {
                 if (dgPerfil.SelectedRows.Count > 0)
                 {
                     DataGridViewRow selectedRow = dgPerfil.SelectedRows[0];
-                    clienteExcluido = _configuration.clienteService.ExcluirCliente(Convert.ToInt16(selectedRow.Cells["Id"].Value));
-                    if (clienteExcluido)
+                    PerfilExcluido = _configuration.perfilService.ExcluirPerfil(Convert.ToInt16(selectedRow.Cells["Id"].Value));
+                    if (PerfilExcluido)
                     {
-                        MessageBox.Show("Dados do cliente excluído com sucesso.");
+                        MessageBox.Show("Dados do Perfil excluído com sucesso.");
                         LimparTela();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao excluir dados do cliente: " + ex.Message);
+                MessageBox.Show("Erro ao excluir dados do Perfil: " + ex.Message);
             }
         }
         private void btnSair_Click(object sender, EventArgs e)

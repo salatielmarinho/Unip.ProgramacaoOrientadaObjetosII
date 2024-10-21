@@ -9,7 +9,7 @@ namespace Presentation.ModuloInicial
     {
         private readonly ServiceConfiguration _configuration;
 
-        public frmMenu(ServiceConfiguration configuration)
+        public frmMenu(ServiceConfiguration configuration, int fkPerfil)
         {
             InitializeComponent();
             _configuration = configuration;
@@ -82,6 +82,20 @@ namespace Presentation.ModuloInicial
                 frmIncluirPerfil frmIncluirPerfil = new frmIncluirPerfil(_configuration);
                 frmIncluirPerfil.MdiParent = this;
                 frmIncluirPerfil.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+        }
+
+        private void gerenciarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmGerenciarPerfil frmGerenciarPerfil = new frmGerenciarPerfil(_configuration);
+                frmGerenciarPerfil.MdiParent = this;
+                frmGerenciarPerfil.Show();
             }
             catch (Exception ex)
             {

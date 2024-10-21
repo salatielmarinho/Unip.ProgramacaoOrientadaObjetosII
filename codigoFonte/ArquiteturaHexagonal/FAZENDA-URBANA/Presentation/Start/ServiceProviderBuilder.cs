@@ -5,7 +5,6 @@ using Infrastructure.Configuration;
 using Infrastructure.Factory;
 using Infrastructure.Interface;
 using Microsoft.Extensions.DependencyInjection;
-using Presentation.ModuloCliente;
 using Presentation.ModuloInicial;
 using Presentation.ModuloPerfil;
 using Presentation.ModuloUsuario;
@@ -21,7 +20,7 @@ namespace Presentation.Start
 
             //Forms
             serviceCollection.AddTransient<frmIncluirPerfil>();
-            serviceCollection.AddTransient<frmGerenciarCliente>();
+            serviceCollection.AddTransient<ModuloCliente.frmGerenciarCliente>();
             serviceCollection.AddTransient<frmIncluirUsuario>();
             serviceCollection.AddTransient<frmMenu>();
             serviceCollection.AddTransient<frmLogin>();

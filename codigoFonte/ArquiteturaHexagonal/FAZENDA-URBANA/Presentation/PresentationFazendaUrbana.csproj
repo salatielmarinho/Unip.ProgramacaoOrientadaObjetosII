@@ -19,14 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Applications\Applications.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Applications\ApplicationFazendaUrbana.csproj" />
+    <ProjectReference Include="..\Infrastructure\InfrastructureFazendaUrbana.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ModuloPerfil\frmGerenciarPerfil.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="ModuloPerfil\frmIncluirPerfil.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -112,6 +112,7 @@
             gerenciarToolStripMenuItem2.Name = "gerenciarToolStripMenuItem2";
             gerenciarToolStripMenuItem2.Size = new Size(180, 22);
             gerenciarToolStripMenuItem2.Text = "Gerenciar";
+            gerenciarToolStripMenuItem2.Click += gerenciarToolStripMenuItem2_Click;
             // 
             // incluirToolStripMenuItem2
             // 

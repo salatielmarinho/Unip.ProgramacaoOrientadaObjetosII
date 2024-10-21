@@ -1,6 +1,6 @@
-﻿namespace Presentation.ModuloCliente
+﻿namespace Presentation.ModuloPerfil
 {
-    partial class frmGerenciarCliente
+    partial class frmGerenciarPerfil
     {
         /// <summary>
         /// Required designer variable.
@@ -77,7 +77,7 @@
             btnExcluirPerfil.TabIndex = 7;
             btnExcluirPerfil.Text = "Excluir Perfil";
             btnExcluirPerfil.UseVisualStyleBackColor = true;
-            btnExcluirPerfil.Click += btnExcluirCliente_Click;
+            btnExcluirPerfil.Click += btnExcluirPerfil_Click;
             // 
             // btnAlterarPerfil
             // 
@@ -87,7 +87,7 @@
             btnAlterarPerfil.TabIndex = 6;
             btnAlterarPerfil.Text = "Alterar Perfil";
             btnAlterarPerfil.UseVisualStyleBackColor = true;
-            btnAlterarPerfil.Click += btnAlterarCliente_Click;
+            btnAlterarPerfil.Click += btnAlterarPerfil_Click;
             // 
             // txtNome
             // 
@@ -113,7 +113,7 @@
             dgPerfil.Name = "dgPerfil";
             dgPerfil.Size = new Size(528, 184);
             dgPerfil.TabIndex = 3;
-            dgPerfil.SelectionChanged += dgCliente_SelectionChanged;
+            dgPerfil.SelectionChanged += dgPerfil_SelectionChanged;
             // 
             // btnPesquisarPerfil
             // 
@@ -123,7 +123,7 @@
             btnPesquisarPerfil.TabIndex = 2;
             btnPesquisarPerfil.Text = "Pesquisar Perfil";
             btnPesquisarPerfil.UseVisualStyleBackColor = true;
-            btnPesquisarPerfil.Click += btnPesquisarCliente_Click;
+            btnPesquisarPerfil.Click += btnPesquisarPerfil_Click;
             // 
             // txtFiltro
             // 

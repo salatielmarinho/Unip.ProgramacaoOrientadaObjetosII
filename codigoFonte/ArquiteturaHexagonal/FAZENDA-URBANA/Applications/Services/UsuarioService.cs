@@ -25,6 +25,18 @@ namespace Applications.Services
             }
         }
 
+        public int ConsultarPerfilUsuario(Usuario usuario)
+        {
+            try
+            {
+                return _configuration.usuarioRepository.ConsultarPerfilUsuario(usuario);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public List<Usuario> ConsultarUsuario(string nomeCliente)
         {
             try
