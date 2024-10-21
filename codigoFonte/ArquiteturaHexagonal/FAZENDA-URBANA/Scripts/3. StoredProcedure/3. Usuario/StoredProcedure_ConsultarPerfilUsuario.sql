@@ -8,7 +8,7 @@ GO
 -- Cria a procedure 'ConsultarPerfilUsuario'
 CREATE PROCEDURE ConsultarPerfilUsuario
     @NomeUsuario NVARCHAR(50),
-	@Senha VARBINARY(MAX)
+	@Senha NVARCHAR(20)
 AS
 BEGIN
     SELECT usr.FK_Perfil

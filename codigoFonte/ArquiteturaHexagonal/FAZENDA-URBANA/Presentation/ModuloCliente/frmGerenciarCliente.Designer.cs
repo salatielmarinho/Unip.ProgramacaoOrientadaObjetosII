@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gbGerenciarPerfil = new GroupBox();
+            gbGerenciarCliente = new GroupBox();
             btnSair = new Button();
-            btnExcluirPerfil = new Button();
-            btnAlterarPerfil = new Button();
+            btnExcluirCliente = new Button();
+            btnAlterarCliente = new Button();
             txtNome = new TextBox();
             lblNome = new Label();
-            dgPerfil = new DataGridView();
-            btnPesquisarPerfil = new Button();
+            dgCliente = new DataGridView();
+            btnPesquisarCliente = new Button();
             txtFiltro = new TextBox();
             lblFiltro = new Label();
-            gbGerenciarPerfil.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgPerfil).BeginInit();
+            gbGerenciarCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgCliente).BeginInit();
             SuspendLayout();
             // 
-            // gbGerenciarPerfil
+            // gbGerenciarCliente
             // 
-            gbGerenciarPerfil.Controls.Add(btnSair);
-            gbGerenciarPerfil.Controls.Add(btnExcluirPerfil);
-            gbGerenciarPerfil.Controls.Add(btnAlterarPerfil);
-            gbGerenciarPerfil.Controls.Add(txtNome);
-            gbGerenciarPerfil.Controls.Add(lblNome);
-            gbGerenciarPerfil.Controls.Add(dgPerfil);
-            gbGerenciarPerfil.Controls.Add(btnPesquisarPerfil);
-            gbGerenciarPerfil.Controls.Add(txtFiltro);
-            gbGerenciarPerfil.Controls.Add(lblFiltro);
-            gbGerenciarPerfil.Location = new Point(12, 0);
-            gbGerenciarPerfil.Name = "gbGerenciarPerfil";
-            gbGerenciarPerfil.Size = new Size(776, 438);
-            gbGerenciarPerfil.TabIndex = 0;
-            gbGerenciarPerfil.TabStop = false;
+            gbGerenciarCliente.Controls.Add(btnSair);
+            gbGerenciarCliente.Controls.Add(btnExcluirCliente);
+            gbGerenciarCliente.Controls.Add(btnAlterarCliente);
+            gbGerenciarCliente.Controls.Add(txtNome);
+            gbGerenciarCliente.Controls.Add(lblNome);
+            gbGerenciarCliente.Controls.Add(dgCliente);
+            gbGerenciarCliente.Controls.Add(btnPesquisarCliente);
+            gbGerenciarCliente.Controls.Add(txtFiltro);
+            gbGerenciarCliente.Controls.Add(lblFiltro);
+            gbGerenciarCliente.Location = new Point(12, 0);
+            gbGerenciarCliente.Name = "gbGerenciarCliente";
+            gbGerenciarCliente.Size = new Size(776, 438);
+            gbGerenciarCliente.TabIndex = 0;
+            gbGerenciarCliente.TabStop = false;
             // 
             // btnSair
             // 
@@ -69,25 +69,25 @@
             btnSair.UseVisualStyleBackColor = true;
             btnSair.Click += btnSair_Click;
             // 
-            // btnExcluirPerfil
+            // btnExcluirCliente
             // 
-            btnExcluirPerfil.Location = new Point(419, 326);
-            btnExcluirPerfil.Name = "btnExcluirPerfil";
-            btnExcluirPerfil.Size = new Size(122, 23);
-            btnExcluirPerfil.TabIndex = 7;
-            btnExcluirPerfil.Text = "Excluir Perfil";
-            btnExcluirPerfil.UseVisualStyleBackColor = true;
-            btnExcluirPerfil.Click += btnExcluirCliente_Click;
+            btnExcluirCliente.Location = new Point(419, 326);
+            btnExcluirCliente.Name = "btnExcluirCliente";
+            btnExcluirCliente.Size = new Size(122, 23);
+            btnExcluirCliente.TabIndex = 7;
+            btnExcluirCliente.Text = "Excluir Cliente";
+            btnExcluirCliente.UseVisualStyleBackColor = true;
+            btnExcluirCliente.Click += btnExcluirCliente_Click;
             // 
-            // btnAlterarPerfil
+            // btnAlterarCliente
             // 
-            btnAlterarPerfil.Location = new Point(13, 326);
-            btnAlterarPerfil.Name = "btnAlterarPerfil";
-            btnAlterarPerfil.Size = new Size(122, 23);
-            btnAlterarPerfil.TabIndex = 6;
-            btnAlterarPerfil.Text = "Alterar Perfil";
-            btnAlterarPerfil.UseVisualStyleBackColor = true;
-            btnAlterarPerfil.Click += btnAlterarCliente_Click;
+            btnAlterarCliente.Location = new Point(13, 326);
+            btnAlterarCliente.Name = "btnAlterarCliente";
+            btnAlterarCliente.Size = new Size(122, 23);
+            btnAlterarCliente.TabIndex = 6;
+            btnAlterarCliente.Text = "Alterar Cliente";
+            btnAlterarCliente.UseVisualStyleBackColor = true;
+            btnAlterarCliente.Click += btnAlterarCliente_Click;
             // 
             // txtNome
             // 
@@ -106,24 +106,24 @@
             lblNome.TabIndex = 4;
             lblNome.Text = "Nome:";
             // 
-            // dgPerfil
+            // dgCliente
             // 
-            dgPerfil.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgPerfil.Location = new Point(13, 72);
-            dgPerfil.Name = "dgPerfil";
-            dgPerfil.Size = new Size(528, 184);
-            dgPerfil.TabIndex = 3;
-            dgPerfil.SelectionChanged += dgCliente_SelectionChanged;
+            dgCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgCliente.Location = new Point(13, 72);
+            dgCliente.Name = "dgCliente";
+            dgCliente.Size = new Size(528, 184);
+            dgCliente.TabIndex = 3;
+            dgCliente.SelectionChanged += dgCliente_SelectionChanged;
             // 
-            // btnPesquisarPerfil
+            // btnPesquisarCliente
             // 
-            btnPesquisarPerfil.Location = new Point(419, 22);
-            btnPesquisarPerfil.Name = "btnPesquisarPerfil";
-            btnPesquisarPerfil.Size = new Size(122, 23);
-            btnPesquisarPerfil.TabIndex = 2;
-            btnPesquisarPerfil.Text = "Pesquisar Perfil";
-            btnPesquisarPerfil.UseVisualStyleBackColor = true;
-            btnPesquisarPerfil.Click += btnPesquisarCliente_Click;
+            btnPesquisarCliente.Location = new Point(419, 22);
+            btnPesquisarCliente.Name = "btnPesquisarCliente";
+            btnPesquisarCliente.Size = new Size(122, 23);
+            btnPesquisarCliente.TabIndex = 2;
+            btnPesquisarCliente.Text = "Pesquisar Cliente";
+            btnPesquisarCliente.UseVisualStyleBackColor = true;
+            btnPesquisarCliente.Click += btnPesquisarCliente_Click;
             // 
             // txtFiltro
             // 
@@ -142,33 +142,33 @@
             lblFiltro.TabIndex = 0;
             lblFiltro.Text = "Filtro:";
             // 
-            // frmGerenciarPerfil
+            // frmGerenciarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             ControlBox = false;
-            Controls.Add(gbGerenciarPerfil);
+            Controls.Add(gbGerenciarCliente);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "frmGerenciarPerfil";
-            Text = "frmGerenciarPerfil";
-            gbGerenciarPerfil.ResumeLayout(false);
-            gbGerenciarPerfil.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgPerfil).EndInit();
+            Name = "frmGerenciarCliente";
+            Text = "frmGerenciarCliente";
+            gbGerenciarCliente.ResumeLayout(false);
+            gbGerenciarCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgCliente).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox gbGerenciarPerfil;
+        private GroupBox gbGerenciarCliente;
         private TextBox txtNome;
         private Label lblNome;
-        private DataGridView dgPerfil;
-        private Button btnPesquisarPerfil;
+        private DataGridView dgCliente;
+        private Button btnPesquisarCliente;
         private TextBox txtFiltro;
         private Label lblFiltro;
         private Button btnSair;
-        private Button btnExcluirPerfil;
-        private Button btnAlterarPerfil;
+        private Button btnExcluirCliente;
+        private Button btnAlterarCliente;
     }
 }

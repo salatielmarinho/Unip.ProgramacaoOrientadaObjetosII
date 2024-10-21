@@ -2,26 +2,30 @@
 using Desktop.ValidadoresComponentes;
 using Domain.Entities;
 using Infrastructure.Encrypt;
-using System.Security.Cryptography;
 
 namespace Presentation.ModuloInicial
 {
     public partial class frmLogin : Form
     {
+        #region Propriedades
         private readonly ServiceConfiguration _configuration;
         private readonly Usuario _usuario;
-        private readonly EncryptionHelper _encryptionHelper;
+        private readonly PasswordHasher _passwordHasher;
         private readonly ValidadorTextBox _validadorTextBox;
+        #endregion
 
+        #region Construtor
         public frmLogin(ServiceConfiguration configuration)
         {
             InitializeComponent();
             _configuration = configuration;
             _usuario = new Usuario();
-            _encryptionHelper = new EncryptionHelper();
+            _passwordHasher = new PasswordHasher();
             _validadorTextBox = new ValidadorTextBox();
         }
+        #endregion
 
+        #region Eventos
         private void btnLogin_Click(object sender, EventArgs e)
         {
             int fkPerfil = 0;
@@ -40,16 +44,28 @@ namespace Presentation.ModuloInicial
                 {
                     MessageBox.Show("Usuário e/ou senha incorretos!");
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro: " + ex.Message);
             }
         }
-
-        private bool ValidarPreenchimentodeCampos()
+        private void btnSair_Click(object sender, EventArgs e)
         {
-            bool retornoValidarPreenchimentodeCampos = true;
+            DialogResult result = MessageBox.Show("Você realmente deseja sair?", "Confirmação",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
+        #endregion
+
+        #region Métodos
+        private void ValidarPreenchimentodeCampos()
+        {
             try
             {
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtUsuario.Parent))
@@ -58,18 +74,14 @@ namespace Presentation.ModuloInicial
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtSenha.Parent))
                 {
-                    using (Aes myAes = Aes.Create())
-                    {
-                        byte[] senha = _encryptionHelper.EncryptStringToBytes_Aes(txtSenha.Text, myAes.Key, myAes.IV);
-                        _usuario.Senha = senha;
-                    }
+                    _usuario.Senha = _passwordHasher.HashPassword(txtSenha.Text);
                 }
             }
             catch
             {
                 throw;
             }
-            return retornoValidarPreenchimentodeCampos;
         }
+        #endregion
     }
 }

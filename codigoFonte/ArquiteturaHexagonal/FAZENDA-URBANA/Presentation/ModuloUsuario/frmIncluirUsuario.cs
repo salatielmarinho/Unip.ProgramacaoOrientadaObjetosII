@@ -5,7 +5,6 @@ using Domain.Entities;
 using Infrastructure.Encrypt;
 using Infrastructure.Validadores;
 using Newtonsoft.Json;
-using System.Security.Cryptography;
 
 namespace Presentation.ModuloUsuario
 {
@@ -13,7 +12,8 @@ namespace Presentation.ModuloUsuario
     {
         #region Propriedades        
         private readonly Email _email;
-        private readonly EncryptionHelper _encryptionHelper;
+        private readonly Perfil _perfil;
+        private readonly PasswordHasher _passwordHasher;
         private readonly ValidadorTextBox _validadorTextBox;
         private readonly Usuario _usuario;
         private readonly ServiceConfiguration _configuration;
@@ -24,7 +24,8 @@ namespace Presentation.ModuloUsuario
         {
             InitializeComponent();
             _email = new Email();
-            _encryptionHelper = new EncryptionHelper();
+            _perfil = new Perfil();
+            _passwordHasher = new PasswordHasher();
             _validadorTextBox = new ValidadorTextBox();
             _usuario = new Usuario();
             _configuration = configuration;
@@ -50,6 +51,7 @@ namespace Presentation.ModuloUsuario
             try
             {
                 ValidarPreenchimentodeCampos();
+                CapturarPerfilSelecionado();
                 retornoIncluirUsuario = _configuration.usuarioService.IncluirUsuario(_usuario);
                 if (retornoIncluirUsuario)
                 {
@@ -62,6 +64,7 @@ namespace Presentation.ModuloUsuario
                 MessageBox.Show("Erro: " + ex.Message);
             }
         }
+
         private void btnSair_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Você realmente deseja sair?", "Confirmação",
@@ -149,11 +152,7 @@ namespace Presentation.ModuloUsuario
                 }
                 if (_validadorTextBox.ValidarTextBoxesPreenchidos(txtSenha.Parent))
                 {
-                    using (Aes myAes = Aes.Create())
-                    {
-                        byte[] senha = _encryptionHelper.EncryptStringToBytes_Aes(txtSenha.Text, myAes.Key, myAes.IV);
-                        _usuario.Senha = senha;
-                    }
+                    _usuario.Senha = _passwordHasher.HashPassword(txtSenha.Text);
                 }
             }
             catch
@@ -163,10 +162,29 @@ namespace Presentation.ModuloUsuario
         }
         private void CarregarPefil()
         {
-            cbxPerfil.DataSource = _configuration.perfilService.ConsultarTodosPerfis();
-            cbxPerfil.DisplayMember = "NomePerfil";
-            cbxPerfil.ValueMember = "Id";
+            try
+            {
+                cbxPerfil.DataSource = _configuration.perfilService.ConsultarTodosPerfis();
+                cbxPerfil.DisplayMember = "NomePerfil";
+                cbxPerfil.ValueMember = "Id";
+            }
+            catch
+            {
+                throw;
+            }
         }
-        #endregion              
+        private void CapturarPerfilSelecionado()
+        {
+            try
+            {
+                var selectedId = cbxPerfil.SelectedValue;
+                _usuario.Fk_Perfil = selectedId != null ? (int)selectedId : 0;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion       
     }
 }

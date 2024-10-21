@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             gbLogin = new GroupBox();
-            lblUsuario = new Label();
-            lblSenha = new Label();
-            txtUsuario = new TextBox();
-            txtSenha = new TextBox();
-            btnLogin = new Button();
             btnSair = new Button();
+            btnLogin = new Button();
+            txtSenha = new TextBox();
+            txtUsuario = new TextBox();
+            lblSenha = new Label();
+            lblUsuario = new Label();
             gbLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,40 +52,15 @@
             gbLogin.TabIndex = 0;
             gbLogin.TabStop = false;
             // 
-            // lblUsuario
+            // btnSair
             // 
-            lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(33, 42);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(50, 15);
-            lblUsuario.TabIndex = 0;
-            lblUsuario.Text = "Usuário:";
-            // 
-            // lblSenha
-            // 
-            lblSenha.AutoSize = true;
-            lblSenha.Location = new Point(33, 75);
-            lblSenha.Name = "lblSenha";
-            lblSenha.Size = new Size(42, 15);
-            lblSenha.TabIndex = 1;
-            lblSenha.Text = "Senha:";
-            // 
-            // txtUsuario
-            // 
-            txtUsuario.Location = new Point(102, 34);
-            txtUsuario.MaxLength = 20;
-            txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(100, 23);
-            txtUsuario.TabIndex = 2;
-            // 
-            // txtSenha
-            // 
-            txtSenha.Location = new Point(102, 67);
-            txtSenha.MaxLength = 8;
-            txtSenha.Name = "txtSenha";
-            txtSenha.PasswordChar = '*';
-            txtSenha.Size = new Size(100, 23);
-            txtSenha.TabIndex = 3;
+            btnSair.Location = new Point(177, 214);
+            btnSair.Name = "btnSair";
+            btnSair.Size = new Size(75, 23);
+            btnSair.TabIndex = 5;
+            btnSair.Text = "Sair";
+            btnSair.UseVisualStyleBackColor = true;
+            btnSair.Click += btnSair_Click;
             // 
             // btnLogin
             // 
@@ -97,14 +72,40 @@
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
             // 
-            // btnSair
+            // txtSenha
             // 
-            btnSair.Location = new Point(177, 214);
-            btnSair.Name = "btnSair";
-            btnSair.Size = new Size(75, 23);
-            btnSair.TabIndex = 5;
-            btnSair.Text = "Sair";
-            btnSair.UseVisualStyleBackColor = true;
+            txtSenha.Location = new Point(102, 67);
+            txtSenha.MaxLength = 8;
+            txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '*';
+            txtSenha.Size = new Size(100, 23);
+            txtSenha.TabIndex = 3;
+            // 
+            // txtUsuario
+            // 
+            txtUsuario.Location = new Point(102, 34);
+            txtUsuario.MaxLength = 20;
+            txtUsuario.Name = "txtUsuario";
+            txtUsuario.Size = new Size(100, 23);
+            txtUsuario.TabIndex = 2;
+            // 
+            // lblSenha
+            // 
+            lblSenha.AutoSize = true;
+            lblSenha.Location = new Point(33, 75);
+            lblSenha.Name = "lblSenha";
+            lblSenha.Size = new Size(42, 15);
+            lblSenha.TabIndex = 1;
+            lblSenha.Text = "Senha:";
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.Location = new Point(33, 42);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(50, 15);
+            lblUsuario.TabIndex = 0;
+            lblUsuario.Text = "Usuário:";
             // 
             // frmLogin
             // 

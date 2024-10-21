@@ -26,8 +26,8 @@ namespace Presentation.ModuloCliente
             {
                 if (!String.IsNullOrEmpty(txtFiltro.Text))
                 {
-                    dgPerfil.DataSource = _configuration.clienteService.ConsultarCliente(txtFiltro.Text);
-                    if (dgPerfil.RowCount == 0)
+                    dgCliente.DataSource = _configuration.clienteService.ConsultarCliente(txtFiltro.Text);
+                    if (dgCliente.RowCount == 0)
                     {
                         MessageBox.Show("Não existem registros para o cliente informado.");
                     }
@@ -46,9 +46,9 @@ namespace Presentation.ModuloCliente
         {
             try
             {
-                if (dgPerfil.SelectedRows.Count > 0)
+                if (dgCliente.SelectedRows.Count > 0)
                 {
-                    DataGridViewRow selectedRow = dgPerfil.SelectedRows[0];
+                    DataGridViewRow selectedRow = dgCliente.SelectedRows[0];
                     txtNome.Text = selectedRow.Cells["NomeCliente"].Value.ToString();
                 }
             }
@@ -62,9 +62,9 @@ namespace Presentation.ModuloCliente
             bool clienteAtualizado = false;
             try
             {
-                if (dgPerfil.SelectedRows.Count > 0)
+                if (dgCliente.SelectedRows.Count > 0)
                 {
-                    DataGridViewRow selectedRow = dgPerfil.SelectedRows[0];
+                    DataGridViewRow selectedRow = dgCliente.SelectedRows[0];
                     if (!String.IsNullOrEmpty(txtNome.Text))
                     {
                         _cliente.NomeCliente = txtNome.Text;
@@ -92,9 +92,9 @@ namespace Presentation.ModuloCliente
             bool clienteExcluido = false;
             try
             {
-                if (dgPerfil.SelectedRows.Count > 0)
+                if (dgCliente.SelectedRows.Count > 0)
                 {
-                    DataGridViewRow selectedRow = dgPerfil.SelectedRows[0];
+                    DataGridViewRow selectedRow = dgCliente.SelectedRows[0];
                     clienteExcluido = _configuration.clienteService.ExcluirCliente(Convert.ToInt16(selectedRow.Cells["Id"].Value));
                     if (clienteExcluido)
                     {
@@ -123,7 +123,7 @@ namespace Presentation.ModuloCliente
         #region Métodos
         private void LimparTela()
         {
-            dgPerfil.DataSource = null;
+            dgCliente.DataSource = null;
             txtFiltro.Clear();
             txtNome.Clear();
             txtFiltro.Focus();

@@ -16,7 +16,7 @@ CREATE PROCEDURE InserirUsuario
 	@Bairro NVARCHAR(100),
 	@Uf NVARCHAR(2),
 	@Email NVARCHAR(100),
-	@Senha VARBINARY(MAX)
+	@Senha NVARCHAR(20)
 AS
 BEGIN
     -- Verifica se pessoa já existe

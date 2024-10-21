@@ -35,6 +35,8 @@
             txtComplemento = new TextBox();
             lblComplemento = new Label();
             gbIncluirUsuario = new GroupBox();
+            lblPerfil = new Label();
+            cbxPerfil = new ComboBox();
             btnSair = new Button();
             btnIncluirUsuario = new Button();
             txtSenha = new TextBox();
@@ -49,8 +51,6 @@
             lblNumero = new Label();
             txtNome = new TextBox();
             lblNome = new Label();
-            cbxPerfil = new ComboBox();
-            lblPerfil = new Label();
             gbIncluirUsuario.SuspendLayout();
             SuspendLayout();
             // 
@@ -133,6 +133,24 @@
             gbIncluirUsuario.Size = new Size(910, 601);
             gbIncluirUsuario.TabIndex = 6;
             gbIncluirUsuario.TabStop = false;
+            // 
+            // lblPerfil
+            // 
+            lblPerfil.AutoSize = true;
+            lblPerfil.Location = new Point(32, 462);
+            lblPerfil.Name = "lblPerfil";
+            lblPerfil.Size = new Size(34, 15);
+            lblPerfil.TabIndex = 19;
+            lblPerfil.Text = "Perfil";
+            // 
+            // cbxPerfil
+            // 
+            cbxPerfil.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPerfil.FormattingEnabled = true;
+            cbxPerfil.Location = new Point(125, 454);
+            cbxPerfil.Name = "cbxPerfil";
+            cbxPerfil.Size = new Size(249, 23);
+            cbxPerfil.TabIndex = 18;            
             // 
             // btnSair
             // 
@@ -255,24 +273,6 @@
             lblNome.Size = new Size(43, 15);
             lblNome.TabIndex = 6;
             lblNome.Text = "Nome:";
-            // 
-            // cbxPerfil
-            // 
-            cbxPerfil.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbxPerfil.FormattingEnabled = true;
-            cbxPerfil.Location = new Point(125, 454);
-            cbxPerfil.Name = "cbxPerfil";
-            cbxPerfil.Size = new Size(249, 23);
-            cbxPerfil.TabIndex = 18;
-            // 
-            // lblPerfil
-            // 
-            lblPerfil.AutoSize = true;
-            lblPerfil.Location = new Point(32, 462);
-            lblPerfil.Name = "lblPerfil";
-            lblPerfil.Size = new Size(34, 15);
-            lblPerfil.TabIndex = 19;
-            lblPerfil.Text = "Perfil";
             // 
             // frmIncluirUsuario
             // 
