@@ -51,6 +51,17 @@ namespace Presentation.ModuloInicial
                 MessageBox.Show("Erro: " + ex.Message);
             }
         }
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                _configuration.databaseInitializerService.Initializer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao criar setup de inicialização do banco de dados: " + ex.Message);
+            }
+        }
         private void btnSair_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Você realmente deseja sair?", "Confirmação",
@@ -83,5 +94,7 @@ namespace Presentation.ModuloInicial
             }
         }
         #endregion
+
+
     }
 }

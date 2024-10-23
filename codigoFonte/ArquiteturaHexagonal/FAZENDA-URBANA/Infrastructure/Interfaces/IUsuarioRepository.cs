@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Infrastructure.Interface
+namespace Infrastructure.Interfaces
 {
     public interface IUsuarioRepository
     {

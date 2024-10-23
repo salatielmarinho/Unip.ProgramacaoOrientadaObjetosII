@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 using Infrastructure.Factory;
-using Infrastructure.Interface;
+using Infrastructure.Interfaces;
 using Microsoft.Data.SqlClient;
 using System.Data;
 

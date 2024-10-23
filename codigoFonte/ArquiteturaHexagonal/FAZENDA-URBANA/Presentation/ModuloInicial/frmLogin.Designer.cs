@@ -117,6 +117,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "frmLogin";
             Text = "frmLogin";
+            Load += frmLogin_Load;
             gbLogin.ResumeLayout(false);
             gbLogin.PerformLayout();
             ResumeLayout(false);
