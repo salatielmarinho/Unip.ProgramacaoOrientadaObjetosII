@@ -7,7 +7,7 @@ namespace Infrastructure.Factory
     {
         public IDbConnection SqlConnection()
         {
-            return new SqlConnection("Server=localhost;Initial Catalog=BD_FAZENDA;Integrated Security=True;Encrypt=False");
+            return new SqlConnection("Server=localhost;Initial Catalog=master;Integrated Security=True;Encrypt=False");
         }
     }
 }

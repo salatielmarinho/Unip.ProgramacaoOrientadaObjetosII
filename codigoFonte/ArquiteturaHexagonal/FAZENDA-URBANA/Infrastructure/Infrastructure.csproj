@@ -15,4 +15,73 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Scripts\1. DataBase\Create_Db_Fazenda.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\2. Table\1. Create_Table_Cliente.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\2. Table\2. Create_Table_Perfil.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\2. Table\3. Create_Table_Usuario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\2. Table\4. Create_Table_Fornecedor.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\2. Table\5. Create_Table_Produto.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\2. Table\6. Create_Table_Venda.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\1. Cliente\StoredProcedure_AlterarCliente.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\1. Cliente\StoredProcedure_ConsultarCliente.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\1. Cliente\StoredProcedure_ExcluirCliente.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\1. Cliente\StoredProcedure_InserirCliente.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\2. Perfil\StoredProcedure_AlterarPerfil.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\2. Perfil\StoredProcedure_ConsultarPerfil.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\2. Perfil\StoredProcedure_ConsultarTodosPerfis.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\2. Perfil\StoredProcedure_ExcluirPerfil.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\2. Perfil\StoredProcedure_InserirPerfil.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\3. Usuario\StoredProcedure_AlterarUsuario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\3. Usuario\StoredProcedure_ConsultarPerfilUsuario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\3. Usuario\StoredProcedure_ConsultarUsuario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\3. Usuario\StoredProcedure_ExcluirUsuario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\3. StoredProcedure\3. Usuario\StoredProcedure_InserirUsuario.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\4. Carga\CargaInicial.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

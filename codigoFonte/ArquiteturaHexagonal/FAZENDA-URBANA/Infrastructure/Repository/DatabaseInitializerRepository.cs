@@ -33,15 +33,15 @@ namespace Repository.Repository
             {
                 //Criar Base de Dados
                 string dataBase = @"
-                IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'BD_FAZENDA')
-                BEGIN
-                    PRINT 'O banco de dados já existe.'
-                END
+                IF EXISTS (SELECT * FROM sys.databases WHERE name = 'BD_FAZENDA')
+                    BEGIN
+                        PRINT 'O banco de dados existe.'
+                    END
                 ELSE
-                BEGIN
-                    CREATE DATABASE BD_FAZENDA;
-                    PRINT 'Banco de dados criado com sucesso.'
-                END";
+	                BEGIN
+		                CREATE DATABASE BD_FAZENDA;
+		                PRINT 'Banco de dados criado com sucesso.'
+	                END;";
                 ExecuteNonQuery(dataBase);
             }
             catch
@@ -239,88 +239,97 @@ namespace Repository.Repository
         {
             string procedureAlterarCliente = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'AlterarCliente' existe e a exclui se existir
-            IF OBJECT_ID('AlterarCliente', 'P') IS NOT NULL
-                DROP PROCEDURE AlterarCliente;
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'AlterarCliente')
+	            BEGIN
+		            DROP PROCEDURE InserirCliente;
+	            END
             GO
-
-            -- Cria a procedure 'AlterarCliente'
-            CREATE PROCEDURE AlterarCliente
-                @NomeCliente VARCHAR(100),
-                @Id INT    
-            AS
-            BEGIN
-	            UPDATE Cliente
-	            SET NomeCliente = @NomeCliente
-		            WHERE Id = @Id
-            END;";
+                BEGIN
+                    -- Cria a procedure 'AlterarCliente'
+                    CREATE PROCEDURE AlterarCliente
+                        @NomeCliente VARCHAR(100),
+                        @Id INT    
+                    AS
+                    BEGIN
+	                    UPDATE Cliente
+	                    SET NomeCliente = @NomeCliente
+		                    WHERE Id = @Id
+                    END;
+                END";
             ExecuteNonQuery(procedureAlterarCliente);
         }
         private void CreateProcedureConsultarCliente()
         {
             string procedureConsultarCliente = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ConsultarCliente' existe e a exclui se existir
-            IF OBJECT_ID('ConsultarCliente', 'P') IS NOT NULL
-                DROP PROCEDURE ConsultarCliente;
-            GO
-
-            -- Cria a procedure 'ConsultarCliente'
-            CREATE PROCEDURE ConsultarCliente
-                @NomeCliente VARCHAR(15)
-            AS
-            BEGIN
-                SELECT Id, NomeCliente, CPF, Email, DataCriacao
-                FROM Cliente WITH(NOLOCK)
-                WHERE NomeCliente LIKE '%' + @NomeCliente + '%'
-	            AND Ativo = 1
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ConsultarCliente')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ConsultarCliente'
+                    CREATE PROCEDURE ConsultarCliente
+                        @NomeCliente VARCHAR(15)
+                    AS
+                    BEGIN
+                        SELECT Id, NomeCliente, CPF, Email, DataCriacao
+                        FROM Cliente WITH(NOLOCK)
+                        WHERE NomeCliente LIKE '%' + @NomeCliente + '%'
+	                    AND Ativo = 1
+                    END;
+                END";
             ExecuteNonQuery(procedureConsultarCliente);
         }
         private void CreateProcedureExcluirCliente()
         {
             string procedureExcluirCliente = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ExcluirCliente' existe e a exclui se existir
-            IF OBJECT_ID('ExcluirCliente', 'P') IS NOT NULL
-                DROP PROCEDURE ExcluirCliente;
-            GO
-
-            -- Cria a procedure 'ExcluirCliente'
-            CREATE PROCEDURE ExcluirCliente    
-                @Id INT    
-            AS
-            BEGIN
-	            UPDATE Cliente
-		            SET Ativo = 0
-		            WHERE Id = @Id
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ExcluirCliente')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ExcluirCliente'
+                    CREATE PROCEDURE ExcluirCliente    
+                        @Id INT    
+                    AS
+                    BEGIN
+	                    UPDATE Cliente
+		                    SET Ativo = 0
+		                    WHERE Id = @Id
+                    END;
+                END";
             ExecuteNonQuery(procedureExcluirCliente);
         }
         private void CreateProcedureInserirCliente()
         {
             string procedureInserirCliente = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'InserirCliente' existe e a exclui se existir
-            IF OBJECT_ID('InserirCliente', 'P') IS NOT NULL
-                DROP PROCEDURE InserirCliente;
-            GO
-
-            -- Cria a procedure 'InserirCliente'
-            CREATE PROCEDURE InserirCliente
-                @NomeCliente VARCHAR(100),    
-                @Cpf VARCHAR(15),
-                @Email VARCHAR(50)    
-            AS
-            BEGIN
-                -- Verifica se o cliente já existe
-                IF EXISTS (SELECT 1 FROM Cliente WHERE Cpf = @Cpf)
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'InserirCliente')
+	            BEGIN
+		            DROP PROCEDURE InserirCliente;
+	            END                            
+                -- Cria a procedure 'InserirCliente'
+                CREATE PROCEDURE InserirCliente
+                    @NomeCliente VARCHAR(100),    
+                    @Cpf VARCHAR(15),
+                    @Email VARCHAR(50)    
+                AS
                 BEGIN
-                    -- Se o cliente já existe, retorna uma mensagem
-                    PRINT 'Cliente já existe.'
-                END
-                ELSE
-		            BEGIN
-			            INSERT INTO Cliente (NomeCliente, CPF, Email)
-			            VALUES (@NomeCliente, @Cpf, @Email);
-		            END;
-            END;";
+                    -- Verifica se o cliente já existe
+                    IF EXISTS (SELECT 1 FROM Cliente WHERE Cpf = @Cpf)
+                    BEGIN
+                        -- Se o cliente já existe, retorna uma mensagem
+                        PRINT 'Cliente já existe.'
+                    END
+                    ELSE
+		                BEGIN
+			                INSERT INTO Cliente (NomeCliente, CPF, Email)
+			                VALUES (@NomeCliente, @Cpf, @Email);
+		                END;
+                END";
             ExecuteNonQuery(procedureInserirCliente);
         }
         #endregion
@@ -330,96 +339,119 @@ namespace Repository.Repository
         {
             string procedureAlterarPerfil = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'AlterarPerfil' existe e a exclui se existir
-            IF OBJECT_ID('AlterarPerfil', 'P') IS NOT NULL
-                DROP PROCEDURE AlterarPerfil;
-            GO
-
-            -- Cria a procedure 'AlterarPerfil'
-            CREATE PROCEDURE AlterarPerfil
-                @NomePerfil NVARCHAR(50),
-                @Id INT    
-            AS
-            BEGIN
-	            UPDATE Perfil
-	            SET NomePerfil = @NomePerfil
-		            WHERE Id = @Id
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'AlterarPerfil')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'AlterarPerfil'
+                    CREATE PROCEDURE AlterarPerfil
+                        @NomePerfil NVARCHAR(50),
+                        @Id INT    
+                    AS
+                    BEGIN
+	                    UPDATE Perfil
+	                    SET NomePerfil = @NomePerfil
+		                    WHERE Id = @Id
+                    END;
+                END";
             ExecuteNonQuery(procedureAlterarPerfil);
         }
         private void CreateProcedureConsultarPerfil()
         {
             string procedureConsultarPerfil = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ConsultarPerfil' existe e a exclui se existir
-            IF OBJECT_ID('ConsultarPerfil', 'P') IS NOT NULL
-                DROP PROCEDURE ConsultarPerfil;
-            GO
-
-            -- Cria a procedure 'ConsultarPerfil'
-            CREATE PROCEDURE ConsultarPerfil
-                @NomePerfil NVARCHAR(50)
-            AS
-            BEGIN
-                SELECT Id, NomePerfil, DataCriacao
-                FROM Perfil WITH(NOLOCK)
-                WHERE NomePerfil LIKE '%' + @NomePerfil + '%'
-	            AND Ativo = 1
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ConsultarPerfil')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ConsultarPerfil'
+                    CREATE PROCEDURE ConsultarPerfil
+                        @NomePerfil NVARCHAR(50)
+                    AS
+                    BEGIN
+                        SELECT Id, NomePerfil, DataCriacao
+                        FROM Perfil WITH(NOLOCK)
+                        WHERE NomePerfil LIKE '%' + @NomePerfil + '%'
+	                    AND Ativo = 1
+                    END;
+                END";
             ExecuteNonQuery(procedureConsultarPerfil);
         }
         private void CreateProcedureConsultarTodosPerfis()
         {
             string procedureConsultarTodosPerfis = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ConsultarTodosPerfis' existe e a exclui se existir
-            IF OBJECT_ID('ConsultarTodosPerfis', 'P') IS NOT NULL
-                DROP PROCEDURE ConsultarTodosPerfis;
-            GO
-
-            -- Cria a procedure 'ConsultarTodosPerfis'
-            CREATE PROCEDURE ConsultarTodosPerfis    
-            AS
-            BEGIN
-                SELECT Id, NomePerfil
-                FROM Perfil WITH(NOLOCK)
-                WHERE Ativo = 1
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ConsultarTodosPerfis')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ConsultarTodosPerfis'
+                    CREATE PROCEDURE ConsultarTodosPerfis    
+                    AS
+                    BEGIN
+                        SELECT Id, NomePerfil
+                        FROM Perfil WITH(NOLOCK)
+                        WHERE Ativo = 1
+                    END;
+                END;";
             ExecuteNonQuery(procedureConsultarTodosPerfis);
         }
         private void CreateProcedureExcluirPerfil()
         {
             string procedureExcluirPerfil = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ExcluirPerfil' existe e a exclui se existir
-            IF OBJECT_ID('ExcluirPerfil', 'P') IS NOT NULL
-                DROP PROCEDURE ExcluirPerfil;
-            GO
-
-            -- Cria a procedure 'ExcluirPerfil'
-            CREATE PROCEDURE ExcluirPerfil    
-                @Id INT    
-            AS
-            BEGIN
-	            UPDATE Perfil
-		            SET Ativo = 0
-		            WHERE Id = @Id
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ExcluirPerfil')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ExcluirPerfil'
+                    CREATE PROCEDURE ExcluirPerfil    
+                        @Id INT    
+                    AS
+                    BEGIN
+	                    UPDATE Perfil
+		                    SET Ativo = 0
+		                    WHERE Id = @Id
+                    END;
+                END";
             ExecuteNonQuery(procedureExcluirPerfil);
         }
         private void CreateProcedureInserirPerfil()
         {
             string procedureInserirPerfil = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ExcluirPerfil' existe e a exclui se existir
-            IF OBJECT_ID('ExcluirPerfil', 'P') IS NOT NULL
-                DROP PROCEDURE ExcluirPerfil;
-            GO
-
-            -- Cria a procedure 'ExcluirPerfil'
-            CREATE PROCEDURE ExcluirPerfil    
-                @Id INT    
-            AS
-            BEGIN
-	            UPDATE Perfil
-		            SET Ativo = 0
-		            WHERE Id = @Id
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'InserirPerfil')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+		            -- Cria a procedure 'InserirPerfil'
+		            CREATE PROCEDURE InserirPerfil
+			            @NomePerfil NVARCHAR(50)      
+		            AS
+		            BEGIN
+			            -- Verifica se o perfil já existe
+			            IF EXISTS (SELECT 1 FROM Perfil WHERE NomePerfil = @NomePerfil)
+				            BEGIN
+					            -- Se o perfil já existe, retorna uma mensagem
+					            PRINT 'Perfil já existe.'
+				            END;
+			            ELSE
+				            BEGIN
+					            INSERT INTO Perfil (NomePerfil)
+					            VALUES (@NomePerfil);
+				            END;
+		            END;
+	            END;";
             ExecuteNonQuery(procedureInserirPerfil);
         }
         #endregion
@@ -429,125 +461,137 @@ namespace Repository.Repository
         {
             string procedureAlterarUsuario = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'AlterarUsuario' existe e a exclui se existir
-            IF OBJECT_ID('AlterarUsuario', 'P') IS NOT NULL
-                DROP PROCEDURE AlterarUsuario;
-            GO
-
-            -- Cria a procedure 'AlterarUsuario'
-            CREATE PROCEDURE AlterarUsuario
-                @Nome NVARCHAR(100),
-                @Id INT    
-            AS
-            BEGIN
-	            UPDATE Usuario
-	            SET Nome = @Nome
-		            WHERE Id = @Id
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'AlterarUsuario')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'AlterarUsuario'
+                    CREATE PROCEDURE AlterarUsuario
+                        @Nome NVARCHAR(100),
+                        @Id INT    
+                    AS
+                    BEGIN
+	                    UPDATE Usuario
+	                    SET Nome = @Nome
+		                    WHERE Id = @Id
+                    END;";
             ExecuteNonQuery(procedureAlterarUsuario);
         }
         private void CreateProcedureConsultarUsuario()
         {
             string procedureConsultarUsuario = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ConsultarUsuario' existe e a exclui se existir
-            IF OBJECT_ID('ConsultarUsuario', 'P') IS NOT NULL
-                DROP PROCEDURE ConsultarUsuario;
-            GO
-
-            -- Cria a procedure 'ConsultarUsuario'
-            CREATE PROCEDURE ConsultarUsuario
-                @NomeUsuario NVARCHAR(50)
-            AS
-            BEGIN
-                SELECT usr.Id, per.NomePerfil, usr.Nome, usr.Cep, usr.Endereco, usr.Complemento,
-	            usr.Numero, usr.Bairro, usr.UF, usr.Email, usr.DataCriacao
-                FROM Usuario AS usr
-	            INNER JOIN Perfil AS per
-	            ON usr.Fk_Perfil = per.Id
-                WHERE usr.Nome LIKE '%' + @NomeUsuario + '%'
-	            AND usr.Ativo = 1
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ConsultarUsuario')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ConsultarUsuario'
+                    CREATE PROCEDURE ConsultarUsuario
+                        @NomeUsuario NVARCHAR(50)
+                    AS
+                    BEGIN
+                        SELECT usr.Id, per.NomePerfil, usr.Nome, usr.Cep, usr.Endereco, usr.Complemento,
+	                    usr.Numero, usr.Bairro, usr.UF, usr.Email, usr.DataCriacao
+                        FROM Usuario AS usr
+	                    INNER JOIN Perfil AS per
+	                    ON usr.Fk_Perfil = per.Id
+                        WHERE usr.Nome LIKE '%' + @NomeUsuario + '%'
+	                    AND usr.Ativo = 1
+                    END;";
             ExecuteNonQuery(procedureConsultarUsuario);
         }
         private void CreateProcedureConsultarPerfilUsuario()
         {
             string procedureConsultarPerfilUsuario = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ConsultarPerfilUsuario' existe e a exclui se existir
-            IF OBJECT_ID('ConsultarPerfilUsuario', 'P') IS NOT NULL
-                DROP PROCEDURE ConsultarPerfilUsuario;
-            GO
-
-            -- Cria a procedure 'ConsultarPerfilUsuario'
-            CREATE PROCEDURE ConsultarPerfilUsuario
-                @NomeUsuario NVARCHAR(50),
-	            @Senha NVARCHAR(20)
-            AS
-            BEGIN
-                SELECT usr.FK_Perfil
-                FROM Usuario AS usr
-	            INNER JOIN Perfil AS per
-	            ON usr.Fk_Perfil = per.Id
-                WHERE usr.Nome LIKE '%' + @NomeUsuario + '%'
-		              AND usr.Senha = @Senha
-		              AND per.Ativo = 1
-		              AND usr.Ativo = 1
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ConsultarPerfilUsuario')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ConsultarPerfilUsuario'
+                    CREATE PROCEDURE ConsultarPerfilUsuario
+                        @NomeUsuario NVARCHAR(50),
+	                    @Senha NVARCHAR(20)
+                    AS
+                    BEGIN
+                        SELECT usr.FK_Perfil
+                        FROM Usuario AS usr
+	                    INNER JOIN Perfil AS per
+	                    ON usr.Fk_Perfil = per.Id
+                        WHERE usr.Nome LIKE '%' + @NomeUsuario + '%'
+		                      AND usr.Senha = @Senha
+		                      AND per.Ativo = 1
+		                      AND usr.Ativo = 1
+                    END;";
             ExecuteNonQuery(procedureConsultarPerfilUsuario);
         }
         private void CreateProcedureExcluirUsuario()
         {
             string procedureExcluirCliente = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'ExcluirUsuario' existe e a exclui se existir
-            IF OBJECT_ID('ExcluirUsuario', 'P') IS NOT NULL
-                DROP PROCEDURE ExcluirUsuario;
-            GO
-
-            -- Cria a procedure 'ExcluirUsuario'
-            CREATE PROCEDURE ExcluirUsuario    
-                @Id INT    
-            AS
-            BEGIN
-	            UPDATE Usuario
-		            SET Ativo = 0
-		            WHERE Id = @Id
-            END;";
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ExcluirUsuario')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
+                BEGIN
+                    -- Cria a procedure 'ExcluirUsuario'
+                    CREATE PROCEDURE ExcluirUsuario    
+                        @Id INT    
+                    AS
+                    BEGIN
+	                    UPDATE Usuario
+		                    SET Ativo = 0
+		                    WHERE Id = @Id
+                    END;
+                END";
             ExecuteNonQuery(procedureExcluirCliente);
         }
         private void CreateProcedureInserirUsuario()
         {
             string procedureInserirUsuario = @"USE BD_FAZENDA;
             -- Verifica se a procedure 'InserirUsuario' existe e a exclui se existir
-            IF OBJECT_ID('InserirUsuario', 'P') IS NOT NULL
-                DROP PROCEDURE InserirUsuario;
-            GO
-
-            -- Cria a procedure 'InserirUsuario'
-            CREATE PROCEDURE InserirUsuario
-                @Fk_Perfil INT,
-	            @Nome NVARCHAR(100),
-	            @Cep NVARCHAR(15),
-	            @Endereco NVARCHAR(100),
-	            @Complemento NVARCHAR(50),
-	            @Numero NVARCHAR(10),
-	            @Bairro NVARCHAR(100),
-	            @Uf NVARCHAR(2),
-	            @Email NVARCHAR(100),
-	            @Senha NVARCHAR(20)
-            AS
-            BEGIN
-                -- Verifica se pessoa já existe
-                IF EXISTS (SELECT 1 FROM Usuario WHERE Nome = @Nome)
+            IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'InserirUsuario')
+	            BEGIN
+		            PRINT 'A stored procedure existe.'
+	            END
+            ELSE
                 BEGIN
-                    -- Se pessoa já existe, retorna uma mensagem
-                    PRINT 'Usuário(a) já existe.'
-                END
-                ELSE
-		            BEGIN
-			            INSERT INTO Usuario (Fk_Perfil, Nome, Cep, Endereco, Complemento, Numero, Bairro,
-			            UF, Email, Senha)
-			            VALUES (@Fk_Perfil, @Nome, @Cep, @Endereco, @Complemento, @Numero, @Bairro,
-			            @Uf, @Email, @Senha);
-		            END;
-            END;";
+                    -- Cria a procedure 'InserirUsuario'
+                    CREATE PROCEDURE InserirUsuario
+                        @Fk_Perfil INT,
+	                    @Nome NVARCHAR(100),
+	                    @Cep NVARCHAR(15),
+	                    @Endereco NVARCHAR(100),
+	                    @Complemento NVARCHAR(50),
+	                    @Numero NVARCHAR(10),
+	                    @Bairro NVARCHAR(100),
+	                    @Uf NVARCHAR(2),
+	                    @Email NVARCHAR(100),
+	                    @Senha NVARCHAR(20)
+                    AS
+                    BEGIN
+                        -- Verifica se pessoa já existe
+                        IF EXISTS (SELECT 1 FROM Usuario WHERE Nome = @Nome)
+                        BEGIN
+                            -- Se pessoa já existe, retorna uma mensagem
+                            PRINT 'Usuário(a) já existe.'
+                        END
+                        ELSE
+		                    BEGIN
+			                    INSERT INTO Usuario (Fk_Perfil, Nome, Cep, Endereco, Complemento, Numero, Bairro,
+			                    UF, Email, Senha)
+			                    VALUES (@Fk_Perfil, @Nome, @Cep, @Endereco, @Complemento, @Numero, @Bairro,
+			                    @Uf, @Email, @Senha);
+		                    END;
+                    END;
+                END";
             ExecuteNonQuery(procedureInserirUsuario);
         }
         #endregion
@@ -563,8 +607,7 @@ namespace Repository.Repository
                  VALUES
                        ('Admin'
                        ,1
-                       ,GETDATE())
-            GO
+                       ,GETDATE())            
 
             INSERT INTO [dbo].[Perfil]
                        ([NomePerfil]
@@ -573,8 +616,7 @@ namespace Repository.Repository
                  VALUES
                        ('Usuario'
                        ,2
-                       ,GETDATE())
-            GO
+                       ,GETDATE())            
 
             INSERT INTO [dbo].[Usuario]
                        ([Fk_Perfil]
@@ -602,7 +644,7 @@ namespace Repository.Repository
                        ,'ef797c8118f02dfb6496'
                        ,1
                        ,GETDATE())
-            GO";
+            ";
             ExecuteNonQuery(scriptCargaInicial);
         }
         #endregion
