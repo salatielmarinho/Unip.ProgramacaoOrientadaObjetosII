@@ -92,35 +92,35 @@ namespace Repository.Repository
             string fileName = "2. Create_Table_Perfil.sql";
             string relativePath = Path.Combine("Scripts", "2. Table", fileName);
             string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fileName);
+            ExecuteNonQuery(fullPath);
         }
         private void CreateTableUsuario()
         {
             string fileName = "3. Create_Table_Usuario.sql";
             string relativePath = Path.Combine("Scripts", "2. Table", fileName);
             string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fileName);
+            ExecuteNonQuery(fullPath);
         }
         private void CreateTableFornecedor()
         {
             string fileName = "4. Create_Table_Fornecedor.sql";
             string relativePath = Path.Combine("Scripts", "2. Table", fileName);
             string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fileName);
+            ExecuteNonQuery(fullPath);
         }
         private void CreateTableProduto()
         {
             string fileName = "5. Create_Table_Produto.sql";
             string relativePath = Path.Combine("Scripts", "2. Table", fileName);
             string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fileName);
+            ExecuteNonQuery(fullPath);
         }
         private void CreateTableVenda()
         {
             string fileName = "6. Create_Table_Venda.sql";
             string relativePath = Path.Combine("Scripts", "2. Table", fileName);
             string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fileName);
+            ExecuteNonQuery(fullPath);
         }
         #endregion
 
@@ -132,7 +132,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_AlterarCliente.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "1. Cliente", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -146,7 +146,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ConsultarCliente.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "1. Cliente", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -160,7 +160,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ExcluirCliente.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "1. Cliente", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -174,7 +174,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_InserirCliente.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "1. Cliente", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -191,7 +191,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_AlterarPerfil.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "2. Perfil", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -205,7 +205,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ConsultarPerfil.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "2. Perfil", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -219,7 +219,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ConsultarTodosPerfis.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "2. Perfil", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -233,7 +233,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ExcluirPerfil.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "2. Perfil", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -247,7 +247,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_InserirPerfil.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "2. Perfil", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -264,7 +264,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_AlterarUsuario.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "3. Usuario", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -278,7 +278,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ConsultarPerfilUsuario.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "3. Usuario", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -292,7 +292,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ConsultarUsuario.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "3. Usuario", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -306,7 +306,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_ExcluirUsuario.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "3. Usuario", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -337,7 +337,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_InserirUsuario.sql";
                 string relativePath = Path.Combine("Scripts", "4. Carga", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
