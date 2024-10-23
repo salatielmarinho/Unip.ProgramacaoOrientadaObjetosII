@@ -2,6 +2,6 @@
 {
     public interface IDatabaseInitializerRepository
     {
-        void ExecuteNonQuery(string commandText);
+        void Initializer();
     }
 }

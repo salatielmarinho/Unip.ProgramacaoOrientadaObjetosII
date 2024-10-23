@@ -16,7 +16,7 @@ namespace Applications.Services
         {
             try
             {
-                _configuration.dDatabaseInitializer.Initializer();
+                _configuration.databaseInitializerRepository.Initializer();
             }
             catch
             {
