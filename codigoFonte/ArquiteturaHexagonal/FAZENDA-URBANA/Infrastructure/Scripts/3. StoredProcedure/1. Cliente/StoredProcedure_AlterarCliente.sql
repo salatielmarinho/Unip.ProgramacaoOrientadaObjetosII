@@ -1,11 +1,6 @@
 USE BD_FAZENDA;
 
--- Verifica se a procedure 'AlterarCliente' existe e a exclui se existir
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'AlterarCliente')
-	BEGIN
-		DROP PROCEDURE AlterarCliente;
-	END
-GO	
+
 
 -- Cria a procedure 'AlterarCliente'
 CREATE PROCEDURE AlterarCliente

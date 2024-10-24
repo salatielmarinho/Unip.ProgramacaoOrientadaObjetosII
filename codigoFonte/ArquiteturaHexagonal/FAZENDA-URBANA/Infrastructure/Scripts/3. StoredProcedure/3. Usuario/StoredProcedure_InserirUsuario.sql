@@ -1,12 +1,3 @@
-USE BD_FAZENDA;
-
--- Verifica se a procedure 'InserirUsuario' existe e a exclui se existir
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'InserirUsuario')
-	BEGIN
-		DROP PROCEDURE InserirUsuario;
-	END
-GO	
-
 -- Cria a procedure 'InserirUsuario'
 CREATE PROCEDURE InserirUsuario
 	@Fk_Perfil INT,

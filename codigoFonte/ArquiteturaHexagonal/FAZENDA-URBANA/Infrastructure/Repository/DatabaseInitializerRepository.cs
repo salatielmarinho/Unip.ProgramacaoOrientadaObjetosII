@@ -42,6 +42,21 @@ namespace Repository.Repository
                 throw;
             }
         }
+        private void SetDataBase()
+        {
+            try
+            {
+                //Set Base de Dados
+                string fileName = "SetDataBase.sql";
+                string relativePath = Path.Combine("Scripts", "1. DataBase", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
+        }
         private void InitializeTable()
         {
             CreateTableCliente();
@@ -53,6 +68,12 @@ namespace Repository.Repository
         }
         private void InitializeProcedure()
         {
+            //Set DataBase
+            SetDataBase();
+
+            //Drop Procedure
+            //DropProcedure();
+
             //Cliente
             CreateProcedureInserirCliente();
             CreateProcedureConsultarCliente();
@@ -77,51 +98,110 @@ namespace Repository.Repository
         {
             CargaInicial();
         }
-        #endregion       
+        #endregion
 
         #region Table
         private void CreateTableCliente()
         {
-            string fileName = "1. Create_Table_Cliente.sql";
-            string relativePath = Path.Combine("Scripts", "2. Table", fileName);
-            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fullPath);
+            try
+            {
+                string fileName = "1. Create_Table_Cliente.sql";
+                string relativePath = Path.Combine("Scripts", "2. Table", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
         }
         private void CreateTablePerfil()
         {
-            string fileName = "2. Create_Table_Perfil.sql";
-            string relativePath = Path.Combine("Scripts", "2. Table", fileName);
-            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fullPath);
+            try
+            {
+                string fileName = "2. Create_Table_Perfil.sql";
+                string relativePath = Path.Combine("Scripts", "2. Table", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
         }
         private void CreateTableUsuario()
         {
-            string fileName = "3. Create_Table_Usuario.sql";
-            string relativePath = Path.Combine("Scripts", "2. Table", fileName);
-            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fullPath);
+            try
+            {
+                string fileName = "3. Create_Table_Usuario.sql";
+                string relativePath = Path.Combine("Scripts", "2. Table", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
         }
         private void CreateTableFornecedor()
         {
-            string fileName = "4. Create_Table_Fornecedor.sql";
-            string relativePath = Path.Combine("Scripts", "2. Table", fileName);
-            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fullPath);
+            try
+            {
+                string fileName = "4. Create_Table_Fornecedor.sql";
+                string relativePath = Path.Combine("Scripts", "2. Table", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
         }
         private void CreateTableProduto()
         {
-            string fileName = "5. Create_Table_Produto.sql";
-            string relativePath = Path.Combine("Scripts", "2. Table", fileName);
-            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fullPath);
+            try
+            {
+                string fileName = "5. Create_Table_Produto.sql";
+                string relativePath = Path.Combine("Scripts", "2. Table", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
         }
         private void CreateTableVenda()
         {
-            string fileName = "6. Create_Table_Venda.sql";
-            string relativePath = Path.Combine("Scripts", "2. Table", fileName);
-            string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-            ExecuteNonQuery(fullPath);
+            try
+            {
+                string fileName = "6. Create_Table_Venda.sql";
+                string relativePath = Path.Combine("Scripts", "2. Table", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
         }
+        #endregion
+        private void DropProcedure()
+        {
+            try
+            {
+                string fileName = "ValidationProcedure.sql";
+                string relativePath = Path.Combine("Scripts", "3. StoredProcedure", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                ExecuteNonQuery(fullPath);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #region Drop Procedure
+
         #endregion
 
         #region Procedures Cliente       

@@ -1,12 +1,3 @@
-USE BD_FAZENDA;
-
--- Verifica se a procedure 'ConsultarPerfil' existe e a exclui se existir
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ConsultarPerfil')
-	BEGIN
-		DROP PROCEDURE ConsultarPerfil;
-	END
-GO	
-
 -- Cria a procedure 'ConsultarPerfil'
 CREATE PROCEDURE ConsultarPerfil
 	@NomePerfil NVARCHAR(50)

@@ -1,12 +1,3 @@
-USE BD_FAZENDA;
-
--- Verifica se a procedure 'InserirPerfil' existe e a exclui se existir
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'InserirPerfil')
-	BEGIN
-		DROP PROCEDURE InserirPerfil;
-	END
-GO	
-
 -- Cria a procedure 'InserirPerfil'
 CREATE PROCEDURE InserirPerfil
 	@NomePerfil NVARCHAR(50)      

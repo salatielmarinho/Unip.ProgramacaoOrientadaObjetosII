@@ -1,12 +1,3 @@
-USE BD_FAZENDA;
-
--- Verifica se a procedure 'ConsultarPerfilUsuario' existe e a exclui se existir
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'ConsultarPerfilUsuario')
-	BEGIN
-		DROP PROCEDURE ConsultarPerfilUsuario;
-	END
-GO
-	
 -- Cria a procedure 'ConsultarPerfilUsuario'
 CREATE PROCEDURE ConsultarPerfilUsuario
 	@NomeUsuario NVARCHAR(50),

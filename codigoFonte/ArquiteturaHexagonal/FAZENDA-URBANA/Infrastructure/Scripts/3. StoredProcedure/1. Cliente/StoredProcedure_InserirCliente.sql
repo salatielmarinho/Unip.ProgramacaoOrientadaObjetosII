@@ -1,12 +1,3 @@
-USE BD_FAZENDA;
-
--- Verifica se a procedure 'InserirCliente' existe e a exclui se existir
-IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'InserirCliente')
-	BEGIN
-		DROP PROCEDURE InserirCliente;
-	END
-GO	
-
 -- Cria a procedure 'InserirCliente'
 CREATE PROCEDURE InserirCliente
 	@NomeCliente VARCHAR(100),    
@@ -24,5 +15,5 @@ BEGIN
 		BEGIN
 			INSERT INTO Cliente (NomeCliente, CPF, Email)
 			VALUES (@NomeCliente, @Cpf, @Email);
-		END;
-END;
+		END
+END
