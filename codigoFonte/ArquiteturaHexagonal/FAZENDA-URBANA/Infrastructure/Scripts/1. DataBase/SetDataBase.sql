@@ -1,1 +1,0 @@
-USE BD_FAZENDA;

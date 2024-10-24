@@ -42,21 +42,6 @@ namespace Repository.Repository
                 throw;
             }
         }
-        private void SetDataBase()
-        {
-            try
-            {
-                //Set Base de Dados
-                string fileName = "SetDataBase.sql";
-                string relativePath = Path.Combine("Scripts", "1. DataBase", fileName);
-                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fullPath);
-            }
-            catch
-            {
-                throw;
-            }
-        }
         private void InitializeTable()
         {
             CreateTableCliente();
@@ -68,14 +53,11 @@ namespace Repository.Repository
         }
         private void InitializeProcedure()
         {
-            //Set DataBase
-            SetDataBase();
-
             //Drop Procedure
-            //DropProcedure();
+            DropProcedure();
 
             //Cliente
-            CreateProcedureInserirCliente();
+            CreateProcedureAlterarCliente();
             CreateProcedureConsultarCliente();
             CreateProcedureExcluirCliente();
             CreateProcedureInserirCliente();
@@ -400,7 +382,7 @@ namespace Repository.Repository
                 string fileName = "StoredProcedure_InserirUsuario.sql";
                 string relativePath = Path.Combine("Scripts", "3. StoredProcedure", "3. Usuario", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
-                ExecuteNonQuery(fileName);
+                ExecuteNonQuery(fullPath);
             }
             catch
             {
@@ -414,7 +396,7 @@ namespace Repository.Repository
         {
             try
             {
-                string fileName = "StoredProcedure_InserirUsuario.sql";
+                string fileName = "CargaInicial.sql";
                 string relativePath = Path.Combine("Scripts", "4. Carga", fileName);
                 string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
                 ExecuteNonQuery(fullPath);
@@ -429,9 +411,19 @@ namespace Repository.Repository
         #region Métodos
         private void ExecuteNonQuery(string script)
         {
+            bool validarExistenciaDb = false;
             try
             {
                 _connection.Open();
+                validarExistenciaDb = ValidarExistenciaDb();
+                if (validarExistenciaDb)
+                {
+                    _connection.ChangeDatabase("BD_FAZENDA");
+                }
+                else
+                {
+                    _connection.ChangeDatabase("MASTER");
+                }
                 using (SqlCommand command = new SqlCommand(File.ReadAllText(script), (SqlConnection)_connection))
                 {
                     command.ExecuteNonQuery();
@@ -444,6 +436,31 @@ namespace Repository.Repository
             finally
             {
                 _connection.Close();
+            }
+        }
+
+        private bool ValidarExistenciaDb()
+        {
+            bool validarExistenciaDb = false;
+            try
+            {
+                string fileName = "ValidateDb.sql";
+                string relativePath = Path.Combine("Scripts", "1. DataBase", fileName);
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                using (SqlCommand command = new SqlCommand(File.ReadAllText(fullPath), (SqlConnection)_connection))
+                {
+                    int dbExists = (int)command.ExecuteScalar();
+
+                    if (dbExists == 1)
+                    {
+                        validarExistenciaDb = true;
+                    }
+                }
+                return validarExistenciaDb;
+            }
+            catch
+            {
+                throw;
             }
         }
         #endregion

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Scripts\1. DataBase\SetDataBase.sql">
+    <None Update="Scripts\1. DataBase\ValidateDb.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Scripts\1. DataBase\Create_Db_Fazenda.sql">

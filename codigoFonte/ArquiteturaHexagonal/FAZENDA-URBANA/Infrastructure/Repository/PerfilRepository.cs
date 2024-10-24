@@ -21,6 +21,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("InserirPerfil", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -50,6 +51,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("ConsultarPerfil", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -88,6 +90,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("ConsultarTodosPerfis", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -124,6 +127,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("AlterarPerfil", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -154,6 +158,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("ExcluirPerfil", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;

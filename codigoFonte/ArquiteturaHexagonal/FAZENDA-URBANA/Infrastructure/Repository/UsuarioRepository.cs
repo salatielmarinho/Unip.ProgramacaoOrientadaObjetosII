@@ -21,6 +21,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("InserirUsuario", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -59,6 +60,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("ConsultarPerfilUsuario", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -92,6 +94,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("ConsultarUsuario", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -140,6 +143,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("AlterarUsuario", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -170,6 +174,7 @@ namespace Repository.Repository
             try
             {
                 _connection.Open();
+                _connection.ChangeDatabase("BD_FAZENDA");
                 using (SqlCommand command = new SqlCommand("ExcluirUsuario", (SqlConnection)_connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;

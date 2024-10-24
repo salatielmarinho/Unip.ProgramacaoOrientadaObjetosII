@@ -1,7 +1,3 @@
-USE BD_FAZENDA;
-
-
-
 -- Cria a procedure 'AlterarCliente'
 CREATE PROCEDURE AlterarCliente
 	@NomeCliente VARCHAR(100),
